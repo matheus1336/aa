@@ -4,7 +4,7 @@
   "description": "Especificador de equipamentos de piscinas Jacuzzi",
   "scripts": {
     "start": "node server.js",
-    "start": "python3 server.py"
+    "build": "echo 'No build step required for static files' && exit 0"
   },
   "keywords": ["jacuzzi", "piscinas", "especificador"],
   "author": "",
