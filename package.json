@@ -1,0 +1,12 @@
+{
+  "name": "jacuzzi-piscinas-especificador",
+  "version": "1.0.0",
+  "description": "Especificador de equipamentos de piscinas Jacuzzi",
+  "scripts": {
+    "build": "echo 'No build step required - static files ready for deployment' && exit 0",
+    "start": "python3 server.py"
+  },
+  "keywords": ["jacuzzi", "piscinas", "especificador"],
+  "author": "",
+  "license": "ISC"
+}
