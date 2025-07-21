@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificador de equipamentos de piscinas Jacuzzi </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* Cores da Jacuzzi Brasil */
+            --primary-blue: #0070b8;
+            --primary-dark-blue: #005a94;
+            --secondary-blue: #00a4e4;
+            --dark-gray: #2b2b2b;
+            --medium-gray: #4a4a4a;
+            --light-gray: #f7f7f7;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            --text-primary: #2b2b2b;
+            --text-secondary: #555555;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --blue-gradient: linear-gradient(135deg, #0070b8, #00a4e4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            background: var(--white);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header {
+            width: 100%;
+            background: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .logo {
+            max-width: 220px;
+            margin-bottom: 15px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        
+        h2 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+        
+        .main-content {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 33.33%;
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        .container {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .container-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 5px rgba(0, 112, 184, 0.3);
+        }
+        
+        button, input[type="submit"] {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 112, 184, 0.25);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+        }
+        
+        button:hover, input[type="submit"]:hover {
+            background: var(--primary-dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 112, 184, 0.4);
+        }
+        
+        .resultado {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            margin: 25px 0;
+            font-weight: 600;
+        }
+        
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            width: 100%;
+        }
+        
+        .intervalo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .image-item {
+            flex: 0 0 calc(50% - 15px);
+            min-width: 180px;
+            max-width: 100%;
+            background: var(--white);
+            padding: 18px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-bottom: 15px;
+        }
+        
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 112, 184, 0.15);
+        }
+        
+        .image-item img {
+            width: 100%;
+            max-width: 160px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .image-item strong {
+            color: var(--primary-blue);
+        }
+        
+        .tech-details {
+            background-color: var(--light-gray);
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border-left: 3px solid var(--primary-blue);
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        .back-btn i {
+            margin-right: 10px;
+        }
+        
+        .volume-info {
+            display: flex;
+            justify-content: space-between;
+            background: var(--light-gray);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--primary-blue);
+        }
+        
+        .volume-info div {
+            flex: 1;
+        }
+        
+        .volume-info p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+        
+        .volume-info strong {
+            color: var(--primary-blue);
+        }
+        
+        .step-container {
+            display: none;
+        }
+        
+        .step-container.active {
+            display: block;
+        }
+        
+        .overflow-container {
+            max-height: 650px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        
+        .overflow-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .overflow-container::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+        
+        .overflow-container::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 10px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+        
+            .panel-1, .panel-2, .panel-3 {
+                width: 100%;
+            }
+        
+            .container {
+                padding: 20px;
+            }
+        
+            .image-item {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 18px;
+            }
+        
+            h1 {
+                font-size: 1.8rem;
+            }
+        
+            h2 {
+                font-size: 1.4rem;
+            }
+        
+            .image-item {
+                flex: 0 0 100%;
+                min-width: 100%;
+                margin-bottom: 20px;
+            }
+        
+            .images-container, .intervalo-container {
+                gap: 20px;
+            }
+        
+            .volume-info {
+                flex-direction: column;
+            }
+        
+            .volume-info div {
+                margin-bottom: 15px;
+            }
+        
+            .logo {
+                max-width: 180px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+        
+            .header {
+                padding: 15px 10px;
+            }
+        
+            button, input[type="submit"] {
+                padding: 12px 22px;
+                font-size: 0.95rem;
+            }
+        
+            .image-item {
+                padding: 15px;
+            }
+        
+            .image-item img {
+                max-width: 140px;
+            }
+        }
+
+        /* Animações */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .tech-glow {
+            animation: pulse 2s infinite;
+        }
+        .catalogo-btn {
+        background-color: #007bff; /* Um azul vibrante */
+        color: white; /* Texto branco */
+        padding: 10px 20px; /* Espaçamento interno */
+        border: none; /* Sem borda */
+        border-radius: 5px; /* Cantos arredondados */
+        cursor: pointer; /* Indica que é clicável */
+        font-size: 1em; /* Tamanho da fonte */
+        font-weight: bold; /* Negrito */
+        text-align: center;
+        text-decoration: none; /* Remover sublinhado se fosse um link <a> */
+        display: inline-block; /* Permite espaçamento e outras propriedades */
+        margin-top: 10px; /* Espaçamento da imagem */
+        transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+    }
+
+    .catalogo-btn:hover {
+        background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://imgur.com/8rohFKH.png" alt="Jacuzzi Logo" class="logo">
+            <h1>Especificador de equipamentos de Piscinas</h1>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <table>
+            <tr>
+                <td>
+                    <div class="panel-1">
+                        <div class="container">
+                            <div class="container-content">
+                                <h2><i class="fas fa-swimming-pool"></i> Especificações da Piscina</h2>
+
+                                <div id="step-1" class="step-container active">
+                                    <form id="profundidadeForm">
+                                        <div class="form-group">
+                                            <label for="profundidade"><i class="fas fa-arrows-alt-v"></i> Profundidade Média (m):</label>
+                                            <input type="number" step="0.01" id="profundidade" name="profundidade" placeholder="Digite a profundidade média da piscina" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="tipo"><i class="fas fa-tag"></i> Tipo de Piscina:</label>
+                                            <select id="tipo" name="tipo">
+                                                <option value="residencial_privativa">Residencial Privativa</option>
+                                                <option value="residencial_coletiva">Residencial Coletiva</option>
+                                                <option value="alta_taxa_ocupacao">Alta Taxa de Ocupação</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="material"><i class="fas fa-gem"></i> Material da Piscina:</label>
+                                            <select id="material" name="material" required>
+                                                <option value="" disabled selected>Selecione o material</option>
+                                                <option value="vinil">Vinil</option>
+                                                <option value="fibra">Fibra</option>
+                                                <option value="concreto">Concreto</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="button" id="proximo-btn"><i class="fas fa-arrow-right"></i> Próximo</button>
+                                        </div>
+                                    </form>
+
+                                    <hr style="margin: 20px 0;">
+
+                                    <form id="volumeForm">
+                                        <div class="form-group">
+                                            <label for="volume_direto"><i class="fas fa-cube"></i> Ou Insira o Volume (m³):</label>
+                                            <input type="number" step="0.01" id="volume_direto" name="volume_direto" placeholder="Digite o volume da piscina em m³">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="material_volume"><i class="fas fa-gem"></i> Material da Piscina (Volume):</label>
+                                            <select id="material_volume" name="material_volume" required>
+                                                <option value="" disabled selected>Selecione o material</option>
+                                                <option value="vinil">Vinil</option>
+                                                <option value="fibra">Fibra</option>
+                                                <option value="concreto">Concreto</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" id="calcular-volume-btn"><i class="fas fa-calculator"></i> Calcular por Volume</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div id="step-2" class="step-container">
+                                    <h3><i class="fas fa-ruler-combined"></i> Dimensões da Piscina</h3>
+                                    <div class="resultado tech-glow">
+                                        <p id="tempo"></p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tempo-recirculacao"><i class="fas fa-clock"></i> Alterar Tempo de Recirculação (horas):</label>
+                                        <select id="tempo-recirculacao" name="tempo-recirculacao" disabled>
+                                            <option value="8">8 horas</option>
+                                            <option value="6">6 horas</option>
+                                            <option value="4">4 horas</option>
+                                            <option value="2">2 horas</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="comprimento-final"><i class="fas fa-arrows-alt-h"></i> Comprimento (m):</label>
+                                        <input type="number" step="0.01" id="comprimento-final" name="comprimento-final" placeholder="Digite o comprimento final" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="largura-final"><i class="fas fa-rulers"></i> Largura (m):</label>
+                                        <input type="number" step="0.01" id="largura-final" name="largura-final" placeholder="Digite a largura final" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" onclick="voltarPasso(1)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                                        <button type="button" onclick="calcularVolume()"><i class="fas fa-calculator"></i> Calcular</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="panel-2">
+                        <div class="container">
+                            <div class="container-content">
+                                <h2><i class="fas fa-tools"></i> Produtos Recomendados
+                                Clique na imagem para ver a pagina no catalogo</h2>
+
+                                <div id="resultado-area">
+                                    <div id="instrucoes-iniciais">
+                                        <p style="text-align: center; margin: 50px 0;">
+                                            <i class="fas fa-info-circle" style="font-size: 48px; color: var(--accent-color);"></i>
+                                            <br><br>
+                                            Preencha as informações no painel à esquerda para ver os produtos recomendados.
+                                        </p>
+                                    </div>
+
+                                    <div id="resultado-produtos" style="display: none;">
+                                        <div class="volume-info">
+                                            <div>
+                                                <p><strong><i class="fas fa-water"></i> Volume da Piscina:</strong> <span id="volume"></span> m³</p>
+                                            </div>
+                                            <div>
+                                                <p><strong><i class="fas fa-tachometer-alt"></i> Vazão m³/h:</strong> <span id="resultado-divisao"></span></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="overflow-container">
+    <div id="imagens-exibidas" class="images-container">
+
+        <div id="intervalo-ate-2-5" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
+                
+                <p><strong>Descrição:</strong> 1 Filtro 12TP cod:98005804 <button onclick="copyToClipboard('98005804')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 25A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> 1 Bomba 25A-M/Monofásico cod:93571354 <button onclick="copyToClipboard('93571354')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 1x Saco Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-2-6-5-5" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
+                <p><strong>Descrição:</strong> Filtro 15TP cod:98005820 <button onclick="copyToClipboard('98005820')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032 <button onclick="copyToClipboard('93571040 / 93571032')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 2x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-5-6-7-0" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://imgur.com/K5w4J2f.png" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                <p><strong>Descrição:</strong> Filtro 19TP <button onclick="copyToClipboard('98005846')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032 <button onclick="copyToClipboard('93571040 / 93571032')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-7-1-8-7" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                <p><strong>Descrição:</strong> Filtro 19TP <button onclick="copyToClipboard('98005846')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3-AT">
+                <img src="https://i.im.ge/2025/01/13/z4frSY.bomba-25A-M-igual-a-5-A-M.webp" alt="Bomba 5 A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 5F-M1 cod:53017281/5F-M2 cod:53016895 ou BOMBA 5A-M cod:93571057/5 A-T cod:93571065 <button onclick="copyToClipboard('53017281 / 53016895 / 93571057 / 93571065')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-8-8-9-5" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                <p><strong>Descrição:</strong> Filtro 19TP <button onclick="copyToClipboard('98005846')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 7A-M cod:93571073/ 7A-T cod:93571081 <button onclick="copyToClipboard('93571073 / 93571081')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-9-6-10-4" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP">
+                <p><strong>Descrição:</strong> Filtro 19TP <button onclick="copyToClipboard('98005846')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M/7A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 7A-M cod:93571073/ 7A-T cod:93571081 <button onclick="copyToClipboard('93571073 / 93571081')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-10-5-10-9" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP">
+                <p><strong>Descrição:</strong> Filtro 22TP <button onclick="copyToClipboard('98005226')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4VG0K.Bomba-1F-M2OUM1.webp" alt="Bomba 1F-M2/M1" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                <p><strong>Descrição:</strong> BOMBA 1F-M2 cod:53016903/ M1 cod:53017299 <button onclick="copyToClipboard('53016903 / 53017299')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 6x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-10-10-11-7" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP" onclick="abrirPDFFiltro22()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 22TP">
+                <p><strong>Descrição:</strong> Filtro 22TP <button onclick="copyToClipboard('98005226')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/X29Leu4.png" alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 1A-M cod:93571099/ A-T cod:93571107 <button onclick="copyToClipboard('93571099 / 93571107')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 6x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-11-8-17-0" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4f25q.Filtro-26TP.png" alt="Filtro 26TP" onclick="abrirPDFFiltro26()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 26TP">
+                <p><strong>Descrição:</strong> Filtro 26TP cod:98005200 <button onclick="copyToClipboard('98005200')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453 <button onclick="copyToClipboard('93571446 / 93571453')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 8x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-17-1-17-3" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
+                <p><strong>Descrição:</strong> Filtro 30TP cod:98005176 <button onclick="copyToClipboard('98005176')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453 <button onclick="copyToClipboard('93571446 / 93571453')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 10x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-17-4-20-5" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
+                <p><strong>Descrição:</strong> Filtro 30TP cod:98005176 <button onclick="copyToClipboard('98005176')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 2B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 2B-M cod:93571461/B-T cod:93571479 <button onclick="copyToClipboard('93571461 / 93571479')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 10x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="intervalo-20-6-23-5" class="intervalo-container" style="display: none;">
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fTD8.Filtro-32tp.jpeg" alt="Filtro 32TP" onclick="abrirPDFFiltro32()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 32TP">
+                <p><strong>Descrição:</strong> Filtro 32TP cod:98005119 <button onclick="copyToClipboard('98005119')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453 <button onclick="copyToClipboard('93571446 / 93571453')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item">
+                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                <p><strong>Descrição:</strong> 10x Areia Ensacada para Filtro cod:22485106 <button onclick="copyToClipboard('22485106')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+
+        <div id="dispositivos" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
+            <div class="image-item" id="dispositivo-retorno">
+                <img src="" alt="">
+                <p><strong></strong> <button onclick="copyToClipboard('')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="dispositivo-aspiracao">
+                <img src="" alt="">
+                <p><strong></strong> <button onclick="copyToClipboard('')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="ralo-fundo">
+                <img src="" alt="">
+                <p><strong></strong> <button onclick="copyToClipboard('')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="modulo-controlador">
+                <img src="https://imgur.com/3wR1nLM.png" alt="Modulo controlador">
+                <p><strong>Descrição:</strong> 1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126) <button onclick="copyToClipboard('99802340 / 99802126')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="refletor-jway">
+                <img src="https://imgur.com/J7MDMNu.png" alt="LED">
+                <p><strong>Descrição:</strong> Refletor LED JWAY (99802324) <button onclick="copyToClipboard('99802324')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="trocador-calor-item" style="display: none;">
+                <img src="" alt="Trocador de Calor">
+                <p><strong id="trocador-calor-desc"></strong> <button onclick="copyToClipboard('')"><i class="fas fa-copy"></i></button></p>
+            </div>
+            <div class="image-item" id="bomba-trocador-item" style="display: none;">
+                <img src="" alt="Bomba para Trocador de Calor">
+                <p><strong id="bomba-trocador-desc"></strong> <button onclick="copyToClipboard('')"><i class="fas fa-copy"></i></button></p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+                                        <div class="back-btn">
+                                            <button onclick="reiniciarCalculos()"><i class="fas fa-sync-alt"></i> Recalcular</button>
+                                        </div>
+                                      
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="panel-3" style="display: none;">
+                        <div class="container">
+                            <div class="container-content">
+                                <h2><i class="fas fa-tools"></i> Opção 2</h2>
+                                <div id="resultado-produtos-2" style="display: none;">
+                                    <div class="overflow-container">
+                                        <div id="imagens-exibidas-2" class="images-container">
+                                            <div id="intervalo-ate-2-5-opcao-2" class="intervalo-container" style="display: none;">
+                                                <div class="image-item">
+                                                    <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP-F" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
+                                                    <p><strong>Descrição:</strong> 1 Filtro 12TP-F cod:98500499 <button onclick="copyToClipboard('98500499')"><i class="fas fa-copy"></i></button></p>
+                                                </div>
+                                                <div class="image-item">
+                                                    <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                                    <p><strong>Descrição:</strong> 1 Bomba 3F-M2/Monofásico cod:53020228 <button onclick="copyToClipboard('53020228')"><i class="fas fa-copy"></i></button></p>
+                                                </div>
+                                            </div>
+                                            <div id="intervalo-2-6-5-5-opcao-2" class="intervalo-container" style="display: none;">
+                                                <div class="image-item">
+                                                    <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP-F" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
+                                                    <p><strong>Descrição:</strong> Filtro 15TP-F cod:98500507 <button onclick="copyToClipboard('98500507')"><i class="fas fa-copy"></i></button></p>
+                                                </div>
+                                                <div class="image-item">
+                                                    <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                                    <p><strong>Descrição:</strong> 1 Bomba 3F-M2/Monofásico cod:53020228 <button onclick="copyToClipboard('53016895')"><i class="fas fa-copy"></i></button></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let profundidade, tipoPiscina, tempoRecirculacao;
+
+        const productRanges = [
+            { range: [0, 2.5], id: "intervalo-ate-2-5" },
+            { range: [2.6, 5.5], id: "intervalo-2-6-5-5" },
+            { range: [5.6, 7.0], id: "intervalo-5-6-7-0" },
+            { range: [7.1, 8.7], id: "intervalo-7-1-8-7" },
+            { range: [8.8, 9.5], id: "intervalo-8-8-9-5" },
+            { range: [9.6, 10.4], id: "intervalo-9-6-10-4" },
+            { range: [10.5, 10.9], id: "intervalo-10-5-10-9" },
+            { range: [10.10, 11.7], id: "intervalo-10-10-11-7" },
+            { range: [11.8, 17.0], id: "intervalo-11-8-17-0" },
+            { range: [17.1, 17.3], id: "intervalo-17-1-17-3" },
+            { range: [17.4, 20.5], id: "intervalo-17-4-20-5" },
+            { range: [20.6, 23.5], id: "intervalo-20-6-23-5" },
+        ];
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Código copiado para a área de transferência!');
+            }, function(err) {
+                alert('Erro ao copiar o código: ', err);
+            });
+        }
+
+        function abrirPDFFiltro12() {
+    window.open('./attached_assets/tp 12_1752806762923.pdf', '_blank');
+}
+
+function abrirPDFFiltro15() {
+    window.open('./attached_assets/FILTRO 15 CATALOGO_1752781854586.pdf', '_blank');
+}
+
+function abrirPDFFiltro19() {
+    window.open('./attached_assets/19tp_1752806835456.pdf', '_blank');
+}
+
+function abrirPDFFiltro22() {
+    window.open('./attached_assets/22tp_1752806923430.pdf', '_blank');
+}
+
+function abrirPDFFiltro26() {
+    window.open('./attached_assets/26tp_1752806974422.pdf', '_blank');
+}
+
+function abrirPDFFiltro30() {
+    window.open('./attached_assets/30tp_1752807008910.pdf', '_blank');
+}
+
+function abrirPDFFiltro32() {
+    window.open('./attached_assets/32tp_1752807047489.pdf', '_blank');
+}
+
+function abrirbombaA() {
+    window.open('./attached_assets/bombaA.pdf', '_blank');
+}
+
+function abrirbombaB() {
+    window.open('./attached_assets/bombaB.pdf', '_blank');
+}
+
+function abrirbombaF() {
+    window.open('./attached_assets/bombaF.pdf', '_blank');
+}
+
+        // Adicionar eventos para a tecla Enter
+        document.getElementById('profundidadeForm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('proximo-btn').click();
+            }
+        });
+
+        document.getElementById('proximo-btn').addEventListener('click', function() {
+            const material = document.getElementById('material').value;
+            if (!material) {
+                alert('Por favor, selecione o material da piscina.');
+                return;
+            }
+            calcularTempo();
+        });
+
+        // Adicionar evento para tecla Enter no passo 2
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('step-2').classList.contains('active')) {
+                if (document.getElementById('comprimento-final').value && document.getElementById('largura-final').value) {
+                    e.preventDefault();
+                    calcularVolume();
+                }
+            }
+        });
+
+        // Função para trocar entre passos do formulário
+        function mostrarPasso(passo) {
+            document.querySelectorAll('.step-container').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step-' + passo).classList.add('active');
+        }
+
+        function voltarPasso(passo) {
+            mostrarPasso(passo);
+        }
+
+        // Ajustar layout das imagens quando redimensionar a janela
+        window.addEventListener('resize', function() {
+            ajustarLayoutImagens();
+        });
+
+        function ajustarLayoutImagens() {
+            const containerWidth = document.querySelector('.panel-2 .container').offsetWidth;
+            const imageItems = document.querySelectorAll('.image-item');
+
+            if (containerWidth < 500) {
+                imageItems.forEach(item => {
+                    item.style.flex = '0 0 100%';
+                });
+            } else {
+                imageItems.forEach(item => {
+                    item.style.flex = '0 0 calc(50% - 15px)';
+                });
+            }
+        }
+
+        function calcularTempo() {
+            profundidade = parseFloat(document.getElementById('profundidade').value);
+            tipoPiscina = document.getElementById('tipo').value;
+
+            if (isNaN(profundidade) || profundidade <= 0) {
+                alert('Por favor, insira uma profundidade válida.');
+                return;
+            }
+
+            // Lógica para calcular o tempo de recirculação
+            if (tipoPiscina === 'residencial_privativa') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 4;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 8;
+                } else {
+                    tempoRecirculacao = 8;
+                }
+            } else if (tipoPiscina === 'residencial_coletiva') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 2;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 6;
+                } else {
+                    tempoRecirculacao = 8;
+                }
+            } else if (tipoPiscina === 'alta_taxa_ocupacao') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 2;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 4;
+                } else {
+                    tempoRecirculacao = 6;
+                }
+            }
+
+            // Atualiza o valor padrão do seletor de tempo
+            document.getElementById('tempo-recirculacao').value = tempoRecirculacao;
+
+            // Exibir o tempo de recirculação e avançar para o próximo passo
+            document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
+            mostrarPasso(2);
+        }
+
+        function exibirTrocadorDeCalor(volume, material) {
+            const trocadorCalorItem = document.getElementById('trocador-calor-item');
+            const bombaTrocadorItem = document.getElementById('bomba-trocador-item');
+            const trocadorCalorDesc = document.getElementById('trocador-calor-desc');
+            const bombaTrocadorDesc = document.getElementById('bomba-trocador-desc');
+
+            trocadorCalorItem.style.display = 'none';
+            bombaTrocadorItem.style.display = 'none';
+
+            if (volume > 0) {
+                let trocadorInfo = { img: '', desc: '', code: '' };
+                let bombaInfo = { img: '', desc: '', code: '' };
+
+                if (volume <= 35) {
+                    trocadorInfo = {
+                        img: 'https://imgur.com/emq7YNy.png',
+                        desc: 'Trocador de Calor JTC35-M2',
+                        code: '99501348'
+                    };
+                    bombaInfo = {
+                        img: 'https://imgur.com/nACsDK9.png',
+                        desc: '1x Bomba para Trocador de Calor 3F-M2/Monofasico cod:53020228 + Flow Disk Tech 17,8 mm cód.39306428 instalado na tubulação de descarga da bomba para vazão ~ 6,5 m³/h',
+                        code: '53020228 / 39306428'
+                    };
+                } else if (volume > 35 && volume <= 50) {
+                    trocadorInfo = {
+                        img: 'https://imgur.com/emq7YNy.png', // Placeholder, update with actual image if available
+                        desc: 'Trocador de Calor JTC50-M2',
+                        code: '99501215'
+                    };
+                    bombaInfo = {
+                        img: 'https://imgur.com/nACsDK9.png', // Placeholder, update if different pump image
+                        desc: '1x bomba 3F-M2 cod:53020228 ou 25A-M cod:93571354 ou 3A-M cod:93571032',
+                        code: '53020228 / 93571354 / 93571032'
+                    };
+                } else if (volume > 50 && volume <= 81) {
+                    trocadorInfo = {
+                        img: 'https://imgur.com/emq7YNy.png', // Placeholder, update with actual image if available
+                        desc: 'Trocador de Calor JTC81-M2',
+                        code: '99501355'
+                    };
+                    bombaInfo = {
+                        img: 'https://imgur.com/nACsDK9.png', // Placeholder, update if different pump image
+                        desc: '1x bomba 3F-M2 cod:53020228 ou 5F-M2 cod:53016895 ou 3A-M cod:93571032 ou 5A-M cod:93571057',
+                        code: '53020228 / 53016895 / 93571032 / 93571057'
+                    };
+                }
+
+                if (trocadorInfo.img) {
+                    trocadorCalorItem.querySelector('img').src = trocadorInfo.img;
+                    trocadorCalorItem.querySelector('img').alt = trocadorInfo.desc;
+                    trocadorCalorDesc.innerHTML = `<strong>Descrição:</strong> ${trocadorInfo.desc} cod: ${trocadorInfo.code} <button onclick="copyToClipboard('${trocadorInfo.code}')"><i class="fas fa-copy"></i></button>`;
+                    trocadorCalorItem.style.display = 'flex';
+
+                    bombaTrocadorItem.querySelector('img').src = bombaInfo.img;
+                    bombaTrocadorItem.querySelector('img').alt = bombaInfo.desc;
+                    bombaTrocadorDesc.innerHTML = `<strong>Descrição:</strong> ${bombaInfo.desc} <button onclick="copyToClipboard('${bombaInfo.code}')"><i class="fas fa-copy"></i></button>`;
+                    bombaTrocadorItem.style.display = 'flex';
+                }
+            }
+        }
+
+        function mostrarProdutosPorVazao(vazao, volume) {
+            document.getElementById('volume').textContent = volume.toFixed(2);
+            document.getElementById('resultado-divisao').textContent = vazao.toFixed(2);
+
+            document.getElementById('instrucoes-iniciais').style.display = 'none';
+            document.getElementById('resultado-produtos').style.display = 'block';
+            document.querySelector('.panel-3').style.display = 'none';
+            document.getElementById('resultado-produtos-2').style.display = 'none';
+
+            document.querySelectorAll('.intervalo-container').forEach(div => {
+                div.style.display = 'none';
+            });
+            document.getElementById('dispositivos').style.display = 'flex';
+
+            let selectedRange = productRanges.find(range => vazao >= range.range[0] && vazao <= range.range[1]);
+
+            if (selectedRange) {
+                document.getElementById(selectedRange.id).style.display = 'flex';
+                document.querySelector('.panel-3').style.display = 'block';
+                document.getElementById('resultado-produtos-2').style.display = 'block';
+
+                if (selectedRange.id === 'intervalo-ate-2-5') {
+                    document.getElementById('intervalo-ate-2-5-opcao-2').style.display = 'flex';
+                }
+                if (selectedRange.id === 'intervalo-2-6-5-5') {
+                    document.getElementById('intervalo-2-6-5-5-opcao-2').style.display = 'flex';
+                }
+            }
+            const materialVolume = document.getElementById('material_volume').value;
+            const material = materialVolume || document.getElementById('material').value;
+
+            const retorno = document.getElementById('dispositivo-retorno');
+            const aspiracao = document.getElementById('dispositivo-aspiracao');
+            const ralo = document.getElementById('ralo-fundo');
+            
+            const refletorFibra = document.getElementById('refletor-fibra');
+            const refletorJway = document.getElementById('refletor-jway');
+            const moduloControlador = document.getElementById('modulo-controlador'); // Get the module controller
+
+            // Hide/show the module controller based on material
+            if (material === 'vinil') {
+                moduloControlador.style.display = 'none'; 
+            } else {
+                moduloControlador.style.display = 'flex';
+            }
+
+            // Lógica de visibilidade do refletor
+            if (material === 'concreto') {
+                refletorJway.style.display = 'flex';
+            } else {
+                refletorJway.style.display = 'none';
+            }
+
+            if (material === 'fibra') {
+                retorno.querySelector('img').src = 'https://imgur.com/vktG7AK.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno IFF90 ABS BRANCO';
+                retorno.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Retorno IFF90 ABS BRANCO cod: 99400772 <button onclick="copyToClipboard(\'99400772\')"><i class="fas fa-copy"></i></button>';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/LKnXHJz.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPF15 BRANCO';
+                aspiracao.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Aspiração VPF15 BRANCO cod: 99400335 <button onclick="copyToClipboard(\'99400335\')"><i class="fas fa-copy"></i></button>';
+
+                ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
+                ralo.querySelector('p').innerHTML = '<strong>Descrição:</strong> 2X Ralo de Fundo CRP180RFV cod: 99401929 <button onclick="copyToClipboard(\'99401929\')"><i class="fas fa-copy"></i></button>';
+                   ralo.style.display = 'flex';
+                
+                refletorJway.querySelector('img').src = 'https://imgur.com/GDQIUjM.png';
+                 refletorJway.querySelector('img').alt = 'Refletor PROLITE Fiber';
+                 refletorJway.querySelector('p').innerHTML = '<strong>Descrição:</strong> Refletor PROLITE Fiber cod: 99500662 <button onclick="copyToClipboard(\'99500662\')"><i class="fas fa-copy"></i></button>';
+                 refletorJway.style.display = 'flex';
+
+            } else if (material === 'vinil') {
+                retorno.querySelector('img').src = 'https://imgur.com/vMnFut4.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno IFL90 ABS BRANCO';
+                retorno.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Retorno IFL90 ABS BRANCO cod: 99400764 <button onclick="copyToClipboard(\'99400764\')"><i class="fas fa-copy"></i></button>';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/D7E5izr.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPL15 BRANCO';
+                aspiracao.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Aspiração VPL15 BRANCO cod: 99400715 <button onclick="copyToClipboard(\'99400715\')"><i class="fas fa-copy"></i></button>';
+
+                ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
+                ralo.querySelector('p').innerHTML = '<strong>Descrição:</strong> 2X Ralo de Fundo CRP180RFV cod: 99401929 <button onclick="copyToClipboard(\'99401929\')"><i class="fas fa-copy"></i></button>';
+
+            } else { // concreto
+                retorno.querySelector('img').src = 'https://imgur.com/Rl11bdX.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno DR50-INOX';
+                retorno.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Retorno DR50-INOX cod: 99401820 <button onclick="copyToClipboard(\'99401820\')"><i class="fas fa-copy"></i></button>';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/Gs3z0VC.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração DA50-INOX';
+                aspiracao.querySelector('p').innerHTML = '<strong>Descrição:</strong> Dispositivo de Aspiração DA50-INOX cod: 99401838 <button onclick="copyToClipboard(\'99401838\')"><i class="fas fa-copy"></i></button>';
+
+                ralo.querySelector('img').src = 'https://imgur.com/yCYfbUO.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo JGF150';
+                ralo.querySelector('p').innerHTML = '<strong>Descrição:</strong> 2X Ralo de fundo JGF150 cod: 99401812 <button onclick="copyToClipboard(\'99401812\')"><i class="fas fa-copy"></i></button>';
+            }
+            
+            // Call the function to display the heat exchanger and pump
+            exibirTrocadorDeCalor(volume, material);
+
+            setTimeout(ajustarLayoutImagens, 100);
+        }
+
+        function calcularPorVolume() {
+            const volume = parseFloat(document.getElementById('volume_direto').value);
+            const tipoPiscina = document.getElementById('tipo').value;
+            const material = document.getElementById('material_volume').value;
+
+            if (isNaN(volume) || volume <= 0) {
+                alert('Por favor, insira um volume válido.');
+                return;
+            }
+
+            if (!material) {
+                alert('Por favor, selecione o material da piscina.');
+                return;
+            }
+
+            let tempoRecirculacao;
+            if (tipoPiscina === 'residencial_privativa') {
+                tempoRecirculacao = 8;
+            } else if (tipoPiscina === 'residencial_coletiva') {
+                tempoRecirculacao = 6;
+            } else if (tipoPiscina === 'alta_taxa_ocupacao') {
+                tempoRecirculacao = 4;
+            }
+
+            const resultadoDivisao = volume / tempoRecirculacao;
+            mostrarProdutosPorVazao(resultadoDivisao, volume);
+        }
+
+        // Função para atualizar o tempo de recirculação quando alterado pelo usuário
+        function atualizarTempoRecirculacao() {
+            tempoRecirculacao = parseInt(document.getElementById('tempo-recirculacao').value);
+            document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
+        }
+
+        function calcularVolume() {
+            const comprimento = parseFloat(document.getElementById('comprimento-final').value);
+            const largura = parseFloat(document.getElementById('largura-final').value);
+            const material = document.getElementById('material').value; // Get material from step 1
+            // Obtém o tempo de recirculação atual do seletor
+            tempoRecirculacao = parseInt(document.getElementById('tempo-recirculacao').value);
+
+            // Habilita o seletor de tempo após o cálculo
+            document.getElementById('tempo-recirculacao').disabled = false;
+
+            if (isNaN(comprimento) || comprimento <= 0 || isNaN(largura) || largura <= 0) {
+                alert('Por favor, insira comprimento e largura válidos.');
+                return;
+            }
+
+            const volume = comprimento * largura * profundidade;
+            const resultadoDivisao = volume / tempoRecirculacao;
+
+            mostrarProdutosPorVazao(resultadoDivisao, volume);
+        }
+
+        function reiniciarCalculos() {
+            // Limpa os campos
+            document.getElementById('profundidade').value = '';
+            document.getElementById('tipo').value = 'residencial_privativa';
+            document.getElementById('material').value = ''; // Reset material selection
+            document.getElementById('comprimento-final').value = '';
+            document.getElementById('largura-final').value = '';
+            document.getElementById('volume_direto').value = '';
+            document.getElementById('material_volume').value = ''; // Reset material selection for direct volume
+
+            // Reseta a interface
+            document.getElementById('instrucoes-iniciais').style.display = 'block';
+            document.getElementById('resultado-produtos').style.display = 'none';
+            document.querySelector('.panel-3').style.display = 'none';
+            document.getElementById('resultado-produtos-2').style.display = 'none';
+
+            // Hide Trocador de Calor and Pump items
+            document.getElementById('trocador-calor-item').style.display = 'none';
+            document.getElementById('bomba-trocador-item').style.display = 'none';
+            document.getElementById('modulo-controlador').style.display = 'flex'; // Ensure module controller is visible on reset
+
+            // Desabilita o seletor de tempo novamente
+            document.getElementById('tempo-recirculacao').disabled = true;
+
+            // Oculta todos os intervalos
+            document.querySelectorAll('.intervalo-container').forEach(div => {
+                div.style.display = 'none';
+            });
+            // Volta para o primeiro passo
+            mostrarPasso(1);
+        }
+        
+
+        // Adicionar evento para atualizar tempo de recirculação
+        document.getElementById('tempo-recirculacao').addEventListener('change', function() {
+            atualizarTempoRecirculacao();
+            // Recalcular os produtos quando o tempo for alterado
+            if (document.getElementById('resultado-produtos').style.display === 'block') {
+                const currentVolume = parseFloat(document.getElementById('volume').textContent);
+                const material = document.getElementById('material_volume').value || document.getElementById('material').value; // Get material from either input
+                const newVazao = currentVolume / tempoRecirculacao;
+                mostrarProdutosPorVazao(newVazao, currentVolume);
+            }
+        });
+
+        // Ajusta o layout das imagens quando a página carrega
+        window.addEventListener('load', function() {
+            ajustarLayoutImagens();
+        });
+
+        document.getElementById('material').addEventListener('change', function() {
+            const material = document.getElementById('material').value;
+            const fibraItems = document.querySelectorAll('[data-material="fibra-item"]');
+            const padraoItems = document.querySelectorAll('[data-material="padrao-item"]');
+
+            if (material === 'fibra') {
+                fibraItems.forEach(item => item.style.display = 'flex');
+                padraoItems.forEach(item => item.style.display = 'none');
+            } else {
+                fibraItems.forEach(item => item.style.display = 'none');
+                padraoItems.forEach(item => item.style.display = 'flex');
+            }
+        });
+
+        document.getElementById('calcular-volume-btn').addEventListener('click', function () {
+            const volume = parseFloat(document.getElementById('volume_direto').value);
+            const materialVolume = document.getElementById('material_volume').value;
+
+            if (!isNaN(volume) && volume > 0) {
+                // Está tentando calcular por volume
+                if (!materialVolume) {
+                    alert('Por favor, selecione o material da piscina (Volume).');
+                    return;
+                }
+                calcularPorVolume();
+            } else {
+                // Cálculo normal (por dimensões)
+                const material = document.getElementById('material').value;
+                if (!material) {
+                    alert('Por favor, selecione o material da piscina.');
+                    return;
+                }
+                calcularVolume();
+            }
+        });
+    </script>
+</body>
+</html>
