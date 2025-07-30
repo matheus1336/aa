@@ -1,11 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const url = require('url');
 
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
-// MIME types for different file extensions
 const mimeTypes = {
   '.html': 'text/html',
   '.js': 'text/javascript',
@@ -25,27 +23,49 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url);
-  let pathname = parsedUrl.pathname;
-  
-  // Default to index.html for root path
-  if (pathname === '/') {
-    pathname = '/index.html';
+  let filePath = '.' + req.url;
+  if (filePath === './') {
+    filePath = './index.html';
   }
-  
-  const filePath = path.join(__dirname, pathname);
-  const ext = path.parse(filePath).ext;
-  const mimeType = mimeTypes[ext] || 'text/plain';
-  
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(404);
-      res.end('File not found');
-      return;
+
+  const extname = String(path.extname(filePath)).toLowerCase();
+  const mimeType = mimeTypes[extname] || 'application/octet-stream';
+
+  fs.readFile(filePath, (error, content) => {
+    if (error) {
+      if (error.code === 'ENOENT') {
+        // If index.html doesn't exist, try to serve the HTML file in the directory
+        fs.readdir('.', (err, files) => {
+          if (err) {
+            res.writeHead(500);
+            res.end('Server Error');
+            return;
+          }
+          
+          const htmlFile = files.find(file => file.endsWith('.html'));
+          if (htmlFile) {
+            fs.readFile(htmlFile, (readError, htmlContent) => {
+              if (readError) {
+                res.writeHead(404);
+                res.end('File not found');
+              } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.end(htmlContent, 'utf-8');
+              }
+            });
+          } else {
+            res.writeHead(404);
+            res.end('No HTML file found');
+          }
+        });
+      } else {
+        res.writeHead(500);
+        res.end('Server Error');
+      }
+    } else {
+      res.writeHead(200, { 'Content-Type': mimeType });
+      res.end(content, 'utf-8');
     }
-    
-    res.writeHead(200, { 'Content-Type': mimeType });
-    res.end(data);
   });
 });
 
