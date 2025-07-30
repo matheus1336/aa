@@ -349,13 +349,21 @@
             transform: scale(1.05);
         }
 
-        .image-item p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .image-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
             text-align: center;
             margin-top: auto;
-            line-height: 1.6;
-            min-height: 100px;
+            margin-bottom: 5px;
+
+        }
+
+              .image-item p.product-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.5;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -740,6 +748,10 @@
                 <div class="container">
                     <h2><i class="fas fa-swimming-pool"></i> Especificações da Piscina</h2>
                     <div class="container-content">
+                            <div class="form-group">
+                                     <button type="button" onclick="window.open('./attached_assets/BI-212 - FILTROS TP-F BOMBAS FlowWay.pdf', '_blank')"><i class="fas fa-table"></i> Tabela de seleção</button>
+                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
+                                </div>
                         <div id="step-1" class="step-container active">
                             <form id="profundidadeForm">
                                 <div class="form-group">
@@ -837,21 +849,24 @@
                                     </div>
                                 </div>
 
-                                <div class="overflow-container">
+                                   <div class="overflow-container">
                                     <div id="imagens-exibidas" class="images-container">
                                         <!-- Intervalos de produtos -->
                                         <div id="intervalo-ate-2-5" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
-                                                <p><strong>Descrição:</strong> 1 Filtro 12TP cod:98005804</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">1 Filtro 12TP cod:98005804</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/S8wchnu.png" alt="Bomba 25A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> 1 Bomba 25A-M/Monofásico cod:93571354</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">1 Bomba 25A-M/Monofásico cod:93571354</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 1x Saco Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -862,15 +877,18 @@
                                         <div id="intervalo-2-6-5-5" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
-                                                <p><strong>Descrição:</strong> Filtro 15TP cod:98005820</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 15TP cod:98005820</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 2x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -880,15 +898,18 @@
                                         <div id="intervalo-5-6-7-0" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://imgur.com/K5w4J2f.png" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
-                                                <p><strong>Descrição:</strong> Filtro 19TP cod:98005846</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -898,15 +919,18 @@
                                         <div id="intervalo-7-1-8-7" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
-                                                <p><strong>Descrição:</strong> Filtro 19TP cod:98005846</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 5F-M1/M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
-                                                <p><strong>Descrição:</strong> BOMBA 5F-M1 cod:53017281/5F-M2 cod:53016895 ou BOMBA 5A-M cod:93571057/5 A-T cod:93571065</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 5F-M1 cod:53017281/5F-M2 cod:53016895 ou BOMBA 5A-M cod:93571057/5 A-T cod:93571065</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -916,15 +940,18 @@
                                         <div id="intervalo-8-8-9-5" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
-                                                <p><strong>Descrição:</strong> Filtro 19TP cod:98005846</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -934,15 +961,18 @@
                                         <div id="intervalo-9-6-10-4" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP">
-                                                <p><strong>Descrição:</strong> Filtro 19TP cod:98005846</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M/7A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 5x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -952,15 +982,18 @@
                                         <div id="intervalo-10-5-10-9" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP">
-                                                <p><strong>Descrição:</strong> Filtro 22TP cod:98005226</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 22TP cod:98005226</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4VG0K.Bomba-1F-M2OUM1.webp" alt="Bomba 1F-M2/M1" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
-                                                <p><strong>Descrição:</strong> BOMBA 1F-M2 cod:53016903/ M1 cod:53017299</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 1F-M2 cod:53016903/ M1 cod:53017299</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 6x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -970,15 +1003,18 @@
                                         <div id="intervalo-10-10-11-7" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP" onclick="abrirPDFFiltro22()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 22TP">
-                                                <p><strong>Descrição:</strong> Filtro 22TP cod:98005226</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 22TP cod:98005226</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/X29Leu4.png" alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 6x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -988,15 +1024,18 @@
                                         <div id="intervalo-11-8-17-0" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4f25q.Filtro-26TP.png" alt="Filtro 26TP" onclick="abrirPDFFiltro26()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 26TP">
-                                                <p><strong>Descrição:</strong> Filtro 26TP cod:98005200</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 26TP cod:98005200</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 8x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1006,15 +1045,18 @@
                                         <div id="intervalo-17-1-17-3" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
-                                                <p><strong>Descrição:</strong> Filtro 30TP cod:98005176</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 30TP cod:98005176</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba B">
-                                                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 10x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1024,15 +1066,18 @@
                                         <div id="intervalo-17-4-20-5" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
-                                                <p><strong>Descrição:</strong> Filtro 30TP cod:98005176</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 30TP cod:98005176</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 2B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 2B-M cod:93571461/B-T cod:93571479</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 2B-M cod:93571461/B-T cod:93571479</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 10x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1042,15 +1087,18 @@
                                         <div id="intervalo-20-6-23-5" class="intervalo-container" style="display: none;">
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fTD8.Filtro-32tp.jpeg" alt="Filtro 32TP" onclick="abrirPDFFiltro32()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 32TP">
-                                                <p><strong>Descrição:</strong> Filtro 32TP cod:98005119</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Filtro 32TP cod:98005119</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
-                                                <p><strong>Descrição:</strong> BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
                                                 <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                                <p><strong>Descrição:</strong> 8x Areia Ensacada para Filtro cod:22485106</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
                                             <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                                 <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1073,31 +1121,38 @@
                                         <div id="dispositivos-1" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
                                             <div class="image-item" id="dispositivo-retorno-1">
                                                 <img src="" alt="">
-                                                <p><strong></strong></p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description"></p>
                                             </div>
                                             <div class="image-item" id="dispositivo-aspiracao-1">
                                                 <img src="" alt="">
-                                                <p><strong></strong></p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description"></p>
                                             </div>
                                             <div class="image-item" id="ralo-fundo-1">
                                                 <img src="" alt="">
-                                                <p><strong></strong></p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description"></p>
                                             </div>
                                             <div class="image-item" id="modulo-controlador-1">
                                                 <img src="https://imgur.com/3wR1nLM.png" alt="Modulo controlador">
-                                                <p><strong>Descrição:</strong> 1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
                                             </div>
                                             <div class="image-item" id="refletor-jway-1">
                                                 <img src="https://imgur.com/J7MDMNu.png" alt="LED">
-                                                <p><strong>Descrição:</strong> Refletor LED JWAY (99802324)</p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description">Refletor LED JWAY (99802324)</p>
                                             </div>
                                             <div class="image-item" id="trocador-calor-item-1" style="display: none;">
                                                 <img src="" alt="Trocador de Calor">
-                                                <p><strong id="trocador-calor-desc-1"></strong></p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description" id="trocador-calor-desc-1"></p>
                                             </div>
                                             <div class="image-item" id="bomba-trocador-item-1" style="display: none;">
                                                 <img src="" alt="Bomba para Trocador de Calor">
-                                                <p><strong id="bomba-trocador-desc-1"></strong></p>
+                                                <h4>Descrição</h4>
+                                                <p class="product-description" id="bomba-trocador-desc-1"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1135,15 +1190,18 @@
                                     <div id="intervalo-ate-2-5-opcao-2" class="intervalo-container" style="display: none;">
                                         <div class="image-item">
                                             <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP-F" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
-                                            <p><strong>Descrição:</strong> 1 Filtro 12TP-F cod:98500499</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">1 Filtro 12TP-F cod:98500499</p>
                                         </div>
                                         <div class="image-item">
                                             <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
-                                            <p><strong>Descrição:</strong> 1 Bomba 3F-M2/Monofásico cod:53020228</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
                                         </div>
                                         <div class="image-item">
                                             <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                            <p><strong>Descrição:</strong> 1x Saco Areia Ensacada para Filtro cod:22485106</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
                                         </div>
                                         <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                             <button type="button" onclick="mostrarItensRelacionados(2)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1152,15 +1210,18 @@
                                     <div id="intervalo-2-6-5-5-opcao-2" class="intervalo-container" style="display: none;">
                                         <div class="image-item">
                                             <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP-F" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
-                                            <p><strong>Descrição:</strong> Filtro 15TP-F cod:98500507</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">Filtro 15TP-F cod:98500507</p>
                                         </div>
                                         <div class="image-item">
                                             <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
-                                            <p><strong>Descrição:</strong> 1 Bomba 3F-M2/Monofásico cod:53020228</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
                                         </div>
                                         <div class="image-item">
                                             <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
-                                            <p><strong>Descrição:</strong> 2x Areia Ensacada para Filtro cod:22485106</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
                                         </div>
                                         <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
                                             <button type="button" onclick="mostrarItensRelacionados(2)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
@@ -1183,31 +1244,38 @@
                                     <div id="dispositivos-2" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
                                         <div class="image-item" id="dispositivo-retorno-2">
                                             <img src="" alt="">
-                                            <p><strong></strong></p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description"></p>
                                         </div>
                                         <div class="image-item" id="dispositivo-aspiracao-2">
                                             <img src="" alt="">
-                                            <p><strong></strong></p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description"></p>
                                         </div>
                                         <div class="image-item" id="ralo-fundo-2">
                                             <img src="" alt="">
-                                            <p><strong></strong></p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description"></p>
                                         </div>
                                         <div class="image-item" id="modulo-controlador-2">
                                             <img src="https://imgur.com/3wR1nLM.png" alt="Modulo controlador">
-                                            <p><strong>Descrição:</strong> 1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
                                         </div>
                                         <div class="image-item" id="refletor-jway-2">
                                             <img src="https://imgur.com/J7MDMNu.png" alt="LED">
-                                            <p><strong>Descrição:</strong> Refletor LED JWAY (99802324)</p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description">Refletor LED JWAY (99802324)</p>
                                         </div>
                                         <div class="image-item" id="trocador-calor-item-2" style="display: none;">
                                             <img src="" alt="Trocador de Calor">
-                                            <p><strong id="trocador-calor-desc-2"></strong></p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description" id="trocador-calor-desc-2"></p>
                                         </div>
                                         <div class="image-item" id="bomba-trocador-item-2" style="display: none;">
                                             <img src="" alt="Bomba para Trocador de Calor">
-                                            <p><strong id="bomba-trocador-desc-2"></strong></p>
+                                            <h4>Descrição</h4>
+                                            <p class="product-description" id="bomba-trocador-desc-2"></p>
                                         </div>
                                     </div>
                                 </div>
