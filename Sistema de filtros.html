@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,7 +45,7 @@
         .header {
             width: 100%;
             background: var(--white);
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -56,15 +55,35 @@
         }
 
         .logo-container {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            position: relative;
         }
 
         .logo {
-            max-width: 220px;
-            margin-bottom: 15px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .header-title {
+            background: var(--primary-blue);
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 15px 25px;
+            margin: 0;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            white-space: nowrap;
         }
 
         h1, h2, h3 {
@@ -111,7 +130,66 @@
         }
 
         .panel-1 {
-            flex: 1;
+            flex: 0 0 400px;
+            max-width: 400px;
+            min-width: 400px;
+        }
+
+        .panel-1 .container {
+            background: var(--primary-blue);
+            height: 700px;
+            max-height: 700px;
+            overflow: hidden;
+        }
+
+        .panel-1 h2 {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 .container-content {
+            background: var(--primary-blue);
+            max-height: 640px;
+            overflow-y: auto;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar-thumb {
+            background: var(--white);
+            border-radius: 10px;
+        }
+
+        .panel-1 label {
+            color: var(--white);
+        }
+
+        .panel-1 select, 
+        .panel-1 input {
+            background-color: var(--white);
+            color: var(--text-primary);
+            border: 1px solid var(--white);
+        }
+
+        .panel-1 button {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 button:hover {
+            background: var(--light-gray);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 .resultado {
+            color: var(--white);
         }
 
         .panel-2, .panel-3 {
@@ -238,7 +316,7 @@
             border: 1px solid var(--border-color);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             margin-bottom: 25px;
-            min-height: 280px;
+            min-height: 350px;
         }
 
         .image-item:hover {
@@ -248,8 +326,8 @@
 
         .image-item img {
             width: 100%;
-            max-width: 160px;
-            height: 140px;
+            max-width: 180px;
+            height: 150px;
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -262,16 +340,26 @@
         }
 
         .image-item p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             text-align: center;
             margin-top: auto;
-            line-height: 1.5;
-            min-height: 80px;
+            line-height: 1.6;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 10px;
+            padding: 0 15px;
+        }
+
+        .image-item p strong {
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .image-item p {
+            font-weight: 500;
         }
 
         .image-item strong {
@@ -362,6 +450,17 @@
                 flex-direction: column;
             }
 
+            .panel-1 {
+                flex: none;
+                max-width: 100%;
+                min-width: 100%;
+            }
+
+            .panel-1 .container {
+                height: auto;
+                max-height: 500px;
+            }
+
             .container {
                 padding: 20px;
             }
@@ -426,8 +525,8 @@
             }
 
             .image-item img {
-                max-width: 120px;
-                height: 100px;
+                max-width: 160px;
+                height: 130px;
             }
         }
 
@@ -446,8 +545,8 @@
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="https://imgur.com/8rohFKH.png" alt="Jacuzzi Logo" class="logo">
-            <h1>Especificador de equipamentos de Piscinas</h1>
+            <img src="https://i.postimg.cc/tJb8yqPf/Capa-especificador.png" alt="Jacuzzi Logo" class="logo">
+            <h1 class="header-title">ESPECIFICADOR DE EQUIPAMENTOS DE PISCINA</h1>
         </div>
     </div>
 
@@ -475,7 +574,9 @@
 
                                 <div class="form-group">
                                     <button type="button" id="proximo-btn"><i class="fas fa-arrow-right"></i> Próximo</button>
+                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
                                 </div>
+
                             </form>
 
                             <hr style="margin: 20px 0;">
@@ -485,7 +586,7 @@
                                     <label for="volume_direto"><i class="fas fa-cube"></i> Ou Insira o Volume (m³):</label>
                                     <input type="number" step="0.01" id="volume_direto" name="volume_direto" placeholder="Digite o volume da piscina em m³">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <button type="button" id="calcular-volume-btn"><i class="fas fa-calculator"></i> Calcular por Volume</button>
                                 </div>
@@ -530,9 +631,8 @@
 
             <div class="panel-2">
                 <div class="container">
-                    <h2><i class="fas fa-tools"></i> Produtos Recomendados</h2>
+                    <h2>Produtos Recomendados</h2>
                     <div class="container-content">
-                        <div class="option-title">OPÇÃO 1</div>
 
                         <div id="resultado-area">
                             <div id="instrucoes-iniciais">
@@ -549,7 +649,7 @@
                                         <p><strong><i class="fas fa-water"></i> Volume da Piscina:</strong> <span id="volume"></span> m³</p>
                                     </div>
                                     <div>
-                                        <p><strong><i class="fas fa-tachometer-alt"></i> Vazão m³/h:</strong> <span id="resultado-divisao"></span></p>
+                                        <p><strong>Vazão m³/h:</strong> <span id="resultado-divisao"></span></p>
                                     </div>
                                 </div>
 
@@ -689,7 +789,8 @@
                                                 <p><strong>Descrição:</strong> Filtro 22TP cod:98005226</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/X29Leu4.png" alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                <img src="https://imgur.com/X29Leu4.png<replit_final_file>
+ alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
                                                 <p><strong>Descrição:</strong> BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
                                             </div>
                                             <div class="image-item">
@@ -826,17 +927,16 @@
 
             <div class="panel-3">
                 <div class="container">
-                    <h2><i class="fas fa-tools"></i> Produtos Recomendados</h2>
+                    <h2>Produtos Recomendados</h2>
                     <div class="container-content">
-                        <div class="option-title">OPÇÃO 2</div>
-                        
+
                         <div id="resultado-produtos-2" style="display: none;">
                             <div class="volume-info">
                                 <div>
                                     <p><strong><i class="fas fa-water"></i> Volume da Piscina:</strong> <span id="volume-2"></span> m³</p>
                                 </div>
                                 <div>
-                                    <p><strong><i class="fas fa-tachometer-alt"></i> Vazão m³/h:</strong> <span id="resultado-divisao-2"></span></p>
+                                    <p><strong>Vazão m³/h:</strong> <span id="resultado-divisao-2"></span></p>
                                 </div>
                             </div>
                             <div class="overflow-container">
@@ -1007,7 +1107,7 @@
                 const step2 = document.getElementById('step-2');
                 const comprimentoFinal = document.getElementById('comprimento-final');
                 const larguraFinal = document.getElementById('largura-final');
-                
+
                 if (e.key === 'Enter' && step2 && step2.classList.contains('active')) {
                     if (comprimentoFinal && larguraFinal && comprimentoFinal.value && larguraFinal.value) {
                         e.preventDefault();
@@ -1072,12 +1172,12 @@
             if (calcularVolumeBtn) {
                 calcularVolumeBtn.addEventListener('click', function () {
                     const volumeInput = document.getElementById('volume_direto');
-                    
+
                     if (!volumeInput) {
                         alert('Erro: Elemento do formulário não encontrado.');
                         return;
                     }
-                    
+
                     const volume = parseFloat(volumeInput.value);
 
                     if (!isNaN(volume) && volume > 0) {
@@ -1171,6 +1271,8 @@
             mostrarPasso(passo);
         }
 
+        let tempoRecirculacaoInicial; // Variável para armazenar o tempo inicial
+
         function calcularTempo() {
             profundidade = parseFloat(document.getElementById('profundidade').value);
             tipoPiscina = document.getElementById('tipo').value;
@@ -1206,6 +1308,12 @@
                     tempoRecirculacao = 6;
                 }
             }
+
+            // Armazenar o tempo inicial calculado
+            tempoRecirculacaoInicial = tempoRecirculacao;
+            
+            // Atualizar as opções do select baseado no tempo inicial
+            atualizarOpcoesTempoRecirculacao();
 
             document.getElementById('tempo-recirculacao').value = tempoRecirculacao;
             document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
@@ -1277,7 +1385,7 @@
         function mostrarProdutosPorVazao(vazao, volume) {
             document.getElementById('volume').textContent = volume.toFixed(2);
             document.getElementById('resultado-divisao').textContent = vazao.toFixed(2);
-            
+
             const volume2Element = document.getElementById('volume-2');
             const resultadoDivisao2Element = document.getElementById('resultado-divisao-2');
             if (volume2Element) volume2Element.textContent = volume.toFixed(2);
@@ -1286,7 +1394,8 @@
             document.getElementById('instrucoes-iniciais').style.display = 'none';
             document.getElementById('resultado-produtos').style.display = 'block';
             document.getElementById('resultado-produtos-2').style.display = 'block';
-            document.getElementById('recalcular-btn').style.display = 'inline-block';
+            document.getElementById('recalcular-btn').style.display = 'none';
+            document.getElementById('recalcular-btn-inicial').style.display = 'inline-block';
 
             document.querySelectorAll('.intervalo-container').forEach(div => {
                 div.style.display = 'none';
@@ -1308,6 +1417,25 @@
             }
         }
 
+        function atualizarOpcoesTempoRecirculacao() {
+            const select = document.getElementById('tempo-recirculacao');
+            
+            // Limpar todas as opções
+            select.innerHTML = '';
+            
+            // Adicionar apenas as opções menores ou iguais ao tempo inicial
+            const opcoes = [8, 6, 4, 2];
+            
+            opcoes.forEach(tempo => {
+                if (tempo <= tempoRecirculacaoInicial) {
+                    const option = document.createElement('option');
+                    option.value = tempo;
+                    option.textContent = `${tempo} horas`;
+                    select.appendChild(option);
+                }
+            });
+        }
+
         function calcularPorVolume() {
             const volume = parseFloat(document.getElementById('volume_direto').value);
             const tipoPiscina = document.getElementById('tipo').value;
@@ -1326,6 +1454,12 @@
                 tempoRecirculacao = 4;
             }
 
+            // Armazenar o tempo inicial calculado
+            tempoRecirculacaoInicial = tempoRecirculacao;
+            
+            // Atualizar as opções do select baseado no tempo inicial
+            atualizarOpcoesTempoRecirculacao();
+
             const resultadoDivisao = volume / tempoRecirculacao;
             mostrarProdutosPorVazao(resultadoDivisao, volume);
         }
@@ -1339,12 +1473,12 @@
             const comprimentoInput = document.getElementById('comprimento-final');
             const larguraInput = document.getElementById('largura-final');
             const tempoInput = document.getElementById('tempo-recirculacao');
-            
+
             if (!comprimentoInput || !larguraInput || !tempoInput) {
                 alert('Erro: Elementos do formulário não encontrados.');
                 return;
             }
-            
+
             const comprimento = parseFloat(comprimentoInput.value);
             const largura = parseFloat(larguraInput.value);
             tempoRecirculacao = parseInt(tempoInput.value);
@@ -1371,10 +1505,23 @@
             document.getElementById('material-relacionados-1').value = '';
             document.getElementById('material-relacionados-2').value = '';
 
+            // Resetar as opções do tempo de recirculação para todas as opções
+            const select = document.getElementById('tempo-recirculacao');
+            select.innerHTML = `
+                <option value="8">8 horas</option>
+                <option value="6">6 horas</option>
+                <option value="4">4 horas</option>
+                <option value="2">2 horas</option>
+            `;
+            
+            // Resetar variável do tempo inicial
+            tempoRecirculacaoInicial = null;
+
             document.getElementById('instrucoes-iniciais').style.display = 'block';
             document.getElementById('resultado-produtos').style.display = 'none';
             document.getElementById('resultado-produtos-2').style.display = 'none';
             document.getElementById('recalcular-btn').style.display = 'none';
+            document.getElementById('recalcular-btn-inicial').style.display = 'none';
 
             document.getElementById('trocador-calor-item-1').style.display = 'none';
             document.getElementById('bomba-trocador-item-1').style.display = 'none';
@@ -1382,14 +1529,20 @@
             document.getElementById('bomba-trocador-item-2').style.display = 'none';
             document.getElementById('modulo-controlador-1').style.display = 'flex';
             document.getElementById('modulo-controlador-2').style.display = 'flex';
-            
+
             document.getElementById('material-selection-1').style.display = 'none';
             document.getElementById('material-selection-2').style.display = 'none';
-            document.querySelectorAll('.form-group button').forEach(btn => {
-                 if (btn.textContent.includes('Ver Itens Relacionados')) {
-                     btn.style.display = 'block';
-                 }
-             });
+            
+            // Show "Ver Itens Relacionados" buttons for both panels
+            const panel1Button = document.getElementById('imagens-exibidas').querySelector('.form-group button');
+            const panel2Button = document.getElementById('imagens-exibidas-2').querySelector('.form-group button');
+            
+            if (panel1Button && panel1Button.textContent.includes('Ver Itens Relacionados')) {
+                panel1Button.style.display = 'block';
+            }
+            if (panel2Button && panel2Button.textContent.includes('Ver Itens Relacionados')) {
+                panel2Button.style.display = 'block';
+            }
 
             document.getElementById('tempo-recirculacao').disabled = true;
 
@@ -1401,12 +1554,16 @@
 
         function mostrarItensRelacionados(option) {
             document.getElementById(`material-selection-${option}`).style.display = 'block';
+
+            // Hide only the button for the specific option/panel
+            const panelContainer = option === 1 ? 
+                document.getElementById('imagens-exibidas') : 
+                document.getElementById('imagens-exibidas-2');
             
-            document.querySelectorAll('.form-group button').forEach(btn => {
-                if (btn.textContent.includes('Ver Itens Relacionados')) {
-                    btn.style.display = 'none';
-                }
-            });
+            const button = panelContainer.querySelector('.form-group button');
+            if (button && button.textContent.includes('Ver Itens Relacionados')) {
+                button.style.display = 'none';
+            }
         }
     </script>
 </body>
