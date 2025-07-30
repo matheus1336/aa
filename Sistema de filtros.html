@@ -69,6 +69,16 @@
             display: block;
         }
 
+        .jacuzzi-logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            max-width: 180px;
+            height: auto;
+        }
+
         .header-title {
             background: var(--primary-blue);
             color: var(--white);
@@ -136,7 +146,7 @@
         }
 
         .panel-1 .container {
-            background: var(--primary-blue);
+            background: #1798ba;
             height: 700px;
             max-height: 700px;
             overflow: hidden;
@@ -148,7 +158,7 @@
         }
 
         .panel-1 .container-content {
-            background: var(--primary-blue);
+            background: #1798ba;
             max-height: 640px;
             overflow-y: auto;
         }
@@ -540,13 +550,187 @@
         .tech-glow {
             animation: pulse 2s infinite;
         }
+
+        /* Footer Styles */
+        .footer {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 0 20px 0;
+            margin-top: 60px;
+            border-top: 3px solid var(--secondary-blue);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-gray);
+            border-bottom-color: var(--light-gray);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-social h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-company-info {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-company-info p {
+            margin: 5px 0;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .footer-company-info {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Material selection styling */
+        .material-selection {
+            background: #1798ba;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .material-selection label {
+            color: var(--white) !important;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .material-selection select {
+            background: var(--white);
+            color: var(--text-primary);
+            border: 2px solid var(--white);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .material-selection select:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 8px rgba(0, 136, 170, 0.3);
+        }
+
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="https://i.postimg.cc/tJb8yqPf/Capa-especificador.png" alt="Jacuzzi Logo" class="logo">
-            <h1 class="header-title">ESPECIFICADOR DE EQUIPAMENTOS DE PISCINA</h1>
+            <img src="https://i.postimg.cc/vBnPZFHF/Capa-especificador-1.png" alt="Header Background" class="logo">
+            <img src="https://i.postimg.cc/xdt1sCwg/Jacuzzi-white-logo.png" alt="Jacuzzi Logo" class="jacuzzi-logo">
+            <h1 class="header-title">ESPECIFICADOR DE EQUIPAMENTOS DE PISCINA JACUZZI®</h1>
         </div>
     </div>
 
@@ -594,7 +778,7 @@
                         </div>
 
                         <div id="step-2" class="step-container">
-                            <h3><i class="fas fa-ruler-combined"></i> Dimensões da Piscina</h3>
+                            <h3 style="font-size: 1.4rem;"><i class="fas fa-ruler-combined"></i> Dimensões da Piscina</h3>
                             <div class="resultado tech-glow">
                                 <p id="tempo"></p>
                             </div>
@@ -631,7 +815,7 @@
 
             <div class="panel-2">
                 <div class="container">
-                    <h2>Produtos Recomendados</h2>
+                    <h2>Produtos Recomendados Opção 1</h2>
                     <div class="container-content">
 
                         <div id="resultado-area">
@@ -789,8 +973,7 @@
                                                 <p><strong>Descrição:</strong> Filtro 22TP cod:98005226</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/X29Leu4.png<replit_final_file>
- alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                <img src="https://imgur.com/X29Leu4.png" alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
                                                 <p><strong>Descrição:</strong> BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
                                             </div>
                                             <div class="image-item">
@@ -874,18 +1057,18 @@
                                             </div>
                                         </div>
 
-                                        <!-- Material selection and devices -->
-                                        <div id="material-selection-1" style="display: none; margin-top: 20px;">
-                                            <div class="form-group">
-                                                <label for="material-relacionados-1"><i class="fas fa-gem"></i> Material da Piscina:</label>
-                                                <select id="material-relacionados-1" name="material-relacionados-1" required>
-                                                    <option value="" disabled selected>Selecione o material</option>
-                                                    <option value="vinil">Vinil</option>
-                                                    <option value="fibra">Fibra</option>
-                                                    <option value="concreto">Concreto</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
+        <div id="material-selection-1" class="material-selection" style="display: none;">
+            <div class="form-group">
+                <label for="material-relacionados-1"><i class="fas fa-gem"></i> Material da Piscina:</label>
+                <select id="material-relacionados-1" name="material-relacionados-1" required>
+                    <option value="" disabled selected>Selecione o material</option>
+                    <option value="vinil">Vinil</option>
+                    <option value="fibra">Fibra</option>
+                    <option value="concreto">Concreto</option>
+                </select>
+            </div>
+        </div>
 
                                         <div id="dispositivos-1" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
                                             <div class="image-item" id="dispositivo-retorno-1">
@@ -927,8 +1110,16 @@
 
             <div class="panel-3">
                 <div class="container">
-                    <h2>Produtos Recomendados</h2>
+                    <h2>Produtos Recomendados Opção 2</h2>
                     <div class="container-content">
+
+                        <div id="instrucoes-iniciais-2">
+                            <p style="text-align: center; margin: 50px 0;">
+                                <i class="fas fa-info-circle" style="font-size: 48px; color: var(--primary-blue);"></i>
+                                <br><br>
+                                Preencha as informações no painel à esquerda para ver os produtos recomendados.
+                            </p>
+                        </div>
 
                         <div id="resultado-produtos-2" style="display: none;">
                             <div class="volume-info">
@@ -976,18 +1167,18 @@
                                         </div>
                                     </div>
 
-                                    <!-- Material selection and devices for Option 2 -->
-                                    <div id="material-selection-2" style="display: none; margin-top: 20px;">
-                                        <div class="form-group">
-                                            <label for="material-relacionados-2"><i class="fas fa-gem"></i> Material da Piscina:</label>
-                                            <select id="material-relacionados-2" name="material-relacionados-2" required>
-                                                <option value="" disabled selected>Selecione o material</option>
-                                                <option value="vinil">Vinil</option>
-                                                <option value="fibra">Fibra</option>
-                                                <option value="concreto">Concreto</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
+                    <div id="material-selection-2" class="material-selection" style="display: none;">
+                        <div class="form-group">
+                            <label for="material-relacionados-2"><i class="fas fa-gem"></i> Material da Piscina:</label>
+                            <select id="material-relacionados-2" name="material-relacionados-2" required>
+                                <option value="" disabled selected>Selecione o material</option>
+                                <option value="vinil">Vinil</option>
+                                <option value="fibra">Fibra</option>
+                                <option value="concreto">Concreto</option>
+                            </select>
+                        </div>
+                    </div>
 
                                     <div id="dispositivos-2" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
                                         <div class="image-item" id="dispositivo-retorno-2">
@@ -1311,11 +1502,13 @@
 
             // Armazenar o tempo inicial calculado
             tempoRecirculacaoInicial = tempoRecirculacao;
-            
+
             // Atualizar as opções do select baseado no tempo inicial
             atualizarOpcoesTempoRecirculacao();
 
-            document.getElementById('tempo-recirculacao').value = tempoRecirculacao;
+            // Habilitar o select
+            document.getElementById('tempo-recirculacao').disabled = false;
+
             document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
             mostrarPasso(2);
         }
@@ -1392,6 +1585,7 @@
             if (resultadoDivisao2Element) resultadoDivisao2Element.textContent = vazao.toFixed(2);
 
             document.getElementById('instrucoes-iniciais').style.display = 'none';
+            document.getElementById('instrucoes-iniciais-2').style.display = 'none';
             document.getElementById('resultado-produtos').style.display = 'block';
             document.getElementById('resultado-produtos-2').style.display = 'block';
             document.getElementById('recalcular-btn').style.display = 'none';
@@ -1419,13 +1613,13 @@
 
         function atualizarOpcoesTempoRecirculacao() {
             const select = document.getElementById('tempo-recirculacao');
-            
+
             // Limpar todas as opções
             select.innerHTML = '';
-            
+
             // Adicionar apenas as opções menores ou iguais ao tempo inicial
             const opcoes = [8, 6, 4, 2];
-            
+
             opcoes.forEach(tempo => {
                 if (tempo <= tempoRecirculacaoInicial) {
                     const option = document.createElement('option');
@@ -1434,6 +1628,9 @@
                     select.appendChild(option);
                 }
             });
+
+            // Definir o valor selecionado como o tempo inicial calculado
+            select.value = tempoRecirculacaoInicial;
         }
 
         function calcularPorVolume() {
@@ -1456,9 +1653,12 @@
 
             // Armazenar o tempo inicial calculado
             tempoRecirculacaoInicial = tempoRecirculacao;
-            
+
             // Atualizar as opções do select baseado no tempo inicial
             atualizarOpcoesTempoRecirculacao();
+
+            // Habilitar o select
+            document.getElementById('tempo-recirculacao').disabled = false;
 
             const resultadoDivisao = volume / tempoRecirculacao;
             mostrarProdutosPorVazao(resultadoDivisao, volume);
@@ -1513,11 +1713,12 @@
                 <option value="4">4 horas</option>
                 <option value="2">2 horas</option>
             `;
-            
+
             // Resetar variável do tempo inicial
             tempoRecirculacaoInicial = null;
 
             document.getElementById('instrucoes-iniciais').style.display = 'block';
+            document.getElementById('instrucoes-iniciais-2').style.display = 'block';
             document.getElementById('resultado-produtos').style.display = 'none';
             document.getElementById('resultado-produtos-2').style.display = 'none';
             document.getElementById('recalcular-btn').style.display = 'none';
@@ -1532,11 +1733,11 @@
 
             document.getElementById('material-selection-1').style.display = 'none';
             document.getElementById('material-selection-2').style.display = 'none';
-            
+
             // Show "Ver Itens Relacionados" buttons for both panels
             const panel1Button = document.getElementById('imagens-exibidas').querySelector('.form-group button');
             const panel2Button = document.getElementById('imagens-exibidas-2').querySelector('.form-group button');
-            
+
             if (panel1Button && panel1Button.textContent.includes('Ver Itens Relacionados')) {
                 panel1Button.style.display = 'block';
             }
@@ -1559,12 +1760,58 @@
             const panelContainer = option === 1 ? 
                 document.getElementById('imagens-exibidas') : 
                 document.getElementById('imagens-exibidas-2');
-            
+
             const button = panelContainer.querySelector('.form-group button');
             if (button && button.textContent.includes('Ver Itens Relacionados')) {
                 button.style.display = 'none';
             }
         }
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-links">
+                    <h3>Links Úteis</h3>
+                    <a href="https://www.jacuzzi.com.br/contato-2/" target="_blank">
+                        <i class="fas fa-envelope"></i> CONTATO
+                    </a>
+                    <a href="https://www.jacuzzi.com.br/assistencia-tecnica/" target="_blank">
+                        <i class="fas fa-tools"></i> ASSISTÊNCIA TÉCNICA
+                    </a>
+                    <a href="https://www.jacuzzi.com.br/privacidade/" target="_blank">
+                        <i class="fas fa-shield-alt"></i> POLÍTICA DE PRIVACIDADE
+                    </a>
+                </div>
+
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://api.whatsapp.com/send/?phone=5511993769644&text&type=phone_number&app_absent=0" target="_blank" class="social-icon" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com/jacuzzibrasil" target="_blank" class="social-icon" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/jacuzzibrasiloficial/" target="_blank" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCkk0U82tcl4hQ0DtVjy0dNw" target="_blank" class="social-icon" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-company-info">
+                <p><strong>JACUZZI DO BRASIL IND E COM LTDA</strong> - CNPJ 59.105.007/0001-10</p>
+                <p>Rod. Waldomiro C. Camargo, km 53,5 - SP-79. CEP 13308-900 - Itu - SP</p>
+                <p>Tel.: (11) 2118-7500 | Suporte técnico: Grande São Paulo (11) 2118-7500</p>
+                <p>Demais localidades - DDG 0800-702-1432 | E-mail: faleconosco@jacuzzi.com.br</p>
+                <p style="margin-top: 15px; font-size: 0.8rem;">© 2025 Jacuzzi do Brasil. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
