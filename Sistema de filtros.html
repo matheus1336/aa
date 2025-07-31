@@ -147,8 +147,7 @@
 
         .panel-1 .container {
             background: #1798ba;
-            height: 700px;
-            max-height: 700px;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -159,7 +158,7 @@
 
         .panel-1 .container-content {
             background: #1798ba;
-            max-height: 640px;
+            height: calc(100% - 75px);
             overflow-y: auto;
         }
 
@@ -746,11 +745,10 @@
         <div class="top-panels">
             <div class="panel-1">
                 <div class="container">
-                    <h2><i class="fas fa-swimming-pool"></i> Especificações da Piscina</h2>
+                    <h2><i class="fas fa-swimming-pool"></i> Especificações<br>da Piscina</h2>
                     <div class="container-content">
                             <div class="form-group">
                                      <button type="button" onclick="window.open('./attached_assets/BI-212 - FILTROS TP-F BOMBAS FlowWay.pdf', '_blank')"><i class="fas fa-table"></i> Tabela de seleção</button>
-                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
                                 </div>
                         <div id="step-1" class="step-container active">
                             <form id="profundidadeForm">
@@ -785,6 +783,7 @@
 
                                 <div class="form-group">
                                     <button type="button" id="calcular-volume-btn"><i class="fas fa-calculator"></i> Calcular por Volume</button>
+                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
                                 </div>
                             </form>
                         </div>
@@ -827,7 +826,7 @@
 
             <div class="panel-2">
                 <div class="container">
-                    <h2>Produtos Recomendados Opção 1</h2>
+                    <h2>Produtos Recomendados<br>Opção 1</h2>
                     <div class="container-content">
 
                         <div id="resultado-area">
@@ -864,7 +863,7 @@
                                                 <p class="product-description">1 Bomba 25A-M/Monofásico cod:93571354</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -886,7 +885,7 @@
                                                 <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -907,7 +906,7 @@
                                                 <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -928,7 +927,7 @@
                                                 <p class="product-description">BOMBA 5F-M1 cod:53017281/5F-M2 cod:53016895 ou BOMBA 5A-M cod:93571057/5 A-T cod:93571065</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -949,7 +948,7 @@
                                                 <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -970,7 +969,7 @@
                                                 <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -991,7 +990,7 @@
                                                 <p class="product-description">BOMBA 1F-M2 cod:53016903/ M1 cod:53017299</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1012,7 +1011,7 @@
                                                 <p class="product-description">BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1033,7 +1032,7 @@
                                                 <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1054,7 +1053,7 @@
                                                 <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1075,7 +1074,7 @@
                                                 <p class="product-description">BOMBA 2B-M cod:93571461/B-T cod:93571479</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1096,7 +1095,7 @@
                                                 <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
                                             </div>
                                             <div class="image-item">
-                                                <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                                 
                                                 <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
                                             </div>
@@ -1135,14 +1134,14 @@
                                                 <p class="product-description"></p>
                                             </div>
                                             <div class="image-item" id="modulo-controlador-1">
-                                                <img src="https://imgur.com/3wR1nLM.png" alt="Modulo controlador">
+                                                <img src="https://imgur.com/0U3HAaz.png" alt="Modulo controlador">
                                                 
-                                                <p class="product-description">1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                                <p class="product-description">Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
                                             </div>
                                             <div class="image-item" id="refletor-jway-1">
-                                                <img src="https://imgur.com/J7MDMNu.png" alt="LED">
+                                                <img src="https://imgur.com/zbFWr9i.png" alt="LED">
                                                 
-                                                <p class="product-description">Refletor LED JWAY (99802324)</p>
+                                                <p class="product-description">#REFLETOR LED PROLITE JWAY-20 cod: 99802324</p>
                                             </div>
                                             <div class="image-item" id="trocador-calor-item-1" style="display: none;">
                                                 <img src="" alt="Trocador de Calor">
@@ -1153,6 +1152,75 @@
                                                 <img src="" alt="Bomba para Trocador de Calor">
                                                 
                                                 <p class="product-description" id="bomba-trocador-desc-1"></p>
+                                            </div>
+
+                                            <div class="image-item" id="trocador-calor-jtc35fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC35FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC35FIW-M2 cod: 99501637</p>
+                                            </div>
+                                            <div class="image-item" id="trocador-calor-jtc50fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC50FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC50FIW-M2 cod: 99501645</p>
+                                            </div>
+                                            <div class="image-item" id="trocador-calor-jtc81fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC81FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC81FIW-M2 cod: 99501652</p>
+                                            </div>
+                                            <div class="image-item" id="de50-18-1" style="display: none;">
+                                                <img src="https://imgur.com/iDIjsZh.png" alt="DE50-18">
+                                                <p class="product-description">DE50-18 cod: 99401861</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wc-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WC-II">
+                                                <p class="product-description">COADEIRA #WC-II cod: 99401002</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wf-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WF-II">
+                                                <p class="product-description">COADEIRA #WF-II cod: 99401028</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wl-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WL-II">
+                                                <p class="product-description">COADEIRA #WL-II cod: 99401010</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-sv-1" style="display: none;">
+                                                <img src="https://imgur.com/4Mic09a.png" alt="COADEIRA #SV">
+                                                <p class="product-description">COADEIRA #SV cod: 99401044</p>
+                                            </div>
+
+                                            <div class="image-item" id="jtc35-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC35-M2">
+                                                <p class="product-description">Trocador de Calor JTC35-M2 cod: 99501348</p>
+                                            </div>
+                                            <div class="image-item" id="jtc50-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC50-M2">
+                                                <p class="product-description">Trocador de Calor JTC50-M2 cod: 99501215</p>
+                                            </div>
+                                            <div class="image-item" id="jtc81-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC81-M2">
+                                                <p class="product-description">Trocador de Calor JTC81-M2 cod: 99501355</p>
+                                            </div>
+
+                                            <div class="image-item" id="jgf280-item-1" style="display: none;">
+                                                <img src="https://imgur.com/Sg2yUlx.png" alt="JGF280">
+                                                <p class="product-description">JGF280 cod: 99400410</p>
+                                            </div>
+                                            <div class="image-item" id="jgf195-item-1" style="display: none;">
+                                                <img src="https://imgur.com/958xLmL.png" alt="JGF 195">
+                                                <p class="product-description">JGF 195 cod: 99400806</p>
+                                            </div>
+
+                                            <div class="image-item" id="escada-item-1" style="display: none;">
+                                                <img src="https://imgur.com/VEI1dUy.png" alt="ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato">
+                                                <p class="product-description">ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato cod: 99200826</p>
+                                            </div>
+                                            <div class="image-item" id="botao-emergencia-item-1" style="display: none;">
+                                                <img src="https://imgur.com/kkt3SkJ.png" alt="BOTÃO DE EMERGÊNCIA">
+                                                <p class="product-description">BOTÃO DE EMERGÊNCIA cod: 99401879</p>
+                                            </div>
+
+                                            <div class="image-item" id="hidroterapia-item-1" style="display: none;">
+                                                <img src="https://imgur.com/MMQoKpE.png" alt="DISPOSITIVO HIDROTERAPIA #PLC1215B">
+                                                <p class="product-description">DISPOSITIVO HIDROTERAPIA #PLC1215B cod: 99600132</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1165,7 +1233,7 @@
 
             <div class="panel-3">
                 <div class="container">
-                    <h2>Produtos Recomendados Opção 2</h2>
+                    <h2>Produtos Recomendados<br>Opção 2</h2>
                     <div class="container-content">
 
                         <div id="instrucoes-iniciais-2">
@@ -1199,7 +1267,7 @@
                                             <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
                                         </div>
                                         <div class="image-item">
-                                            <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                            <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                             
                                             <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
                                         </div>
@@ -1219,7 +1287,7 @@
                                             <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
                                         </div>
                                         <div class="image-item">
-                                            <img src="https://imgur.com/s3hRGxh.png" alt="Areia Ensacada">
+                                            <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
                                             
                                             <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
                                         </div>
@@ -1258,14 +1326,14 @@
                                             <p class="product-description"></p>
                                         </div>
                                         <div class="image-item" id="modulo-controlador-2">
-                                            <img src="https://imgur.com/3wR1nLM.png" alt="Modulo controlador">
+                                            <img src="https://imgur.com/0U3HAaz.png" alt="Modulo controlador">
                                             
-                                            <p class="product-description">1x Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                            <p class="product-description">Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
                                         </div>
                                         <div class="image-item" id="refletor-jway-2">
-                                            <img src="https://imgur.com/J7MDMNu.png" alt="LED">
+                                            <img src="https://imgur.com/zbFWr9i.png" alt="LED">
                                             
-                                            <p class="product-description">Refletor LED JWAY (99802324)</p>
+                                            <p class="product-description">#REFLETOR LED PROLITE JWAY-20 cod: 99802324</p>
                                         </div>
                                         <div class="image-item" id="trocador-calor-item-2" style="display: none;">
                                             <img src="" alt="Trocador de Calor">
@@ -1276,6 +1344,75 @@
                                             <img src="" alt="Bomba para Trocador de Calor">
                                             
                                             <p class="product-description" id="bomba-trocador-desc-2"></p>
+                                        </div>
+
+                                        <div class="image-item" id="trocador-calor-jtc35fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC35FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC35FIW-M2 cod: 99501637</p>
+                                        </div>
+                                        <div class="image-item" id="trocador-calor-jtc50fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC50FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC50FIW-M2 cod: 99501645</p>
+                                        </div>
+                                        <div class="image-item" id="trocador-calor-jtc81fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC81FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC81FIW-M2 cod: 99501652</p>
+                                        </div>
+                                        <div class="image-item" id="de50-18-2" style="display: none;">
+                                            <img src="https://imgur.com/iDIjsZh.png" alt="DE50-18">
+                                            <p class="product-description">DE50-18 cod: 99401861</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wc-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WC-II">
+                                            <p class="product-description">COADEIRA #WC-II cod: 99401002</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wf-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WF-II">
+                                            <p class="product-description">COADEIRA #WF-II cod: 99401028</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wl-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WL-II">
+                                            <p class="product-description">COADEIRA #WL-II cod: 99401010</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-sv-2" style="display: none;">
+                                            <img src="https://imgur.com/4Mic09a.png" alt="COADEIRA #SV">
+                                            <p class="product-description">COADEIRA #SV cod: 99401044</p>
+                                        </div>
+
+                                        <div class="image-item" id="jtc35-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC35-M2">
+                                            <p class="product-description">Trocador de Calor JTC35-M2 cod: 99501348</p>
+                                        </div>
+                                        <div class="image-item" id="jtc50-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC50-M2">
+                                            <p class="product-description">Trocador de Calor JTC50-M2 cod: 99501215</p>
+                                        </div>
+                                        <div class="image-item" id="jtc81-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC81-M2">
+                                            <p class="product-description">Trocador de Calor JTC81-M2 cod: 99501355</p>
+                                        </div>
+
+                                        <div class="image-item" id="jgf280-item-2" style="display: none;">
+                                            <img src="https://imgur.com/Sg2yUlx.png" alt="JGF280">
+                                            <p class="product-description">JGF280 cod: 99400410</p>
+                                        </div>
+                                        <div class="image-item" id="jgf195-item-2" style="display: none;">
+                                            <img src="https://imgur.com/958xLmL.png" alt="JGF 195">
+                                            <p class="product-description">JGF 195 cod: 99400806</p>
+                                        </div>
+
+                                        <div class="image-item" id="escada-item-2" style="display: none;">
+                                            <img src="https://imgur.com/VEI1dUy.png" alt="ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato">
+                                            <p class="product-description">ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato cod: 99200826</p>
+                                        </div>
+                                        <div class="image-item" id="botao-emergencia-item-2" style="display: none;">
+                                            <img src="https://imgur.com/kkt3SkJ.png" alt="BOTÃO DE EMERGÊNCIA">
+                                            <p class="product-description">BOTÃO DE EMERGÊNCIA cod: 99401879</p>
+                                        </div>
+
+                                        <div class="image-item" id="hidroterapia-item-2" style="display: none;">
+                                            <img src="https://imgur.com/MMQoKpE.png" alt="DISPOSITIVO HIDROTERAPIA #PLC1215B">
+                                            <p class="product-description">DISPOSITIVO HIDROTERAPIA #PLC1215B cod: 99600132</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1455,6 +1592,29 @@
             const refletorJway = document.getElementById(`refletor-jway-${option}`);
             const moduloControlador = document.getElementById(`modulo-controlador-${option}`);
 
+            const coadeiraWc = document.getElementById(`coadeira-wc-${option}`);
+            const coadeiraWf = document.getElementById(`coadeira-wf-${option}`);
+            const coadeiraWl = document.getElementById(`coadeira-wl-${option}`);
+            const coadeiraSv = document.getElementById(`coadeira-sv-${option}`);
+            const de5018 = document.getElementById(`de50-18-${option}`);
+            const trocador1 = document.getElementById(`trocador-calor-jtc35fiw-m2-${option}`);
+            const trocador2 = document.getElementById(`trocador-calor-jtc50fiw-m2-${option}`);
+            const trocador3 = document.getElementById(`trocador-calor-jtc81fiw-m2-${option}`);
+            const jgf280 = document.getElementById(`jgf280-item-${option}`);
+            const jgf195 = document.getElementById(`jgf195-item-${option}`);
+            const escada = document.getElementById(`escada-item-${option}`);
+            const botaoEmergencia = document.getElementById(`botao-emergencia-item-${option}`);
+            const hidroterapia = document.getElementById(`hidroterapia-item-${option}`);
+
+            // Hide all material-specific items by default
+            coadeiraWc.style.display = 'none';
+            coadeiraWf.style.display = 'none';
+            coadeiraWl.style.display = 'none';
+            de5018.style.display = 'none';
+            jgf280.style.display = 'none';
+            jgf195.style.display = 'none';
+            hidroterapia.style.display = 'none';
+
             // Hide/show the module controller based on material
             if (material === 'vinil') {
                 moduloControlador.style.display = 'none'; 
@@ -1474,7 +1634,7 @@
                 retorno.querySelector('img').alt = 'Dispositivo de Retorno IFF90 ABS BRANCO';
                 retorno.querySelector('p').innerHTML = 'Dispositivo de Retorno IFF90 ABS BRANCO cod: 99400772';
 
-                aspiracao.querySelector('img').src = 'https://imgur.com/LKnXHJz.png';
+                aspiracao.querySelector('img').src = 'https://imgur.com/nn5PE4C.png';
                 aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPF15 BRANCO';
                 aspiracao.querySelector('p').innerHTML = 'Dispositivo de Aspiração VPF15 BRANCO cod: 99400335';
 
@@ -1483,24 +1643,29 @@
                 ralo.querySelector('p').innerHTML = 'Ralo de Fundo CRP180RFV cod: 99401929';
                 ralo.style.display = 'flex';
 
-                refletorJway.querySelector('img').src = 'https://imgur.com/GDQIUjM.png';
+                refletorJway.querySelector('img').src = 'https://imgur.com/o08AdqH.png';
                 refletorJway.querySelector('img').alt = 'Refletor PROLITE Fiber';
                 refletorJway.querySelector('p').innerHTML = 'Refletor PROLITE Fiber cod: 99500662';
                 refletorJway.style.display = 'flex';
+
+                coadeiraWf.style.display = 'flex';
+                hidroterapia.style.display = 'flex';
 
             } else if (material === 'vinil') {
                 retorno.querySelector('img').src = 'https://imgur.com/vMnFut4.png';
                 retorno.querySelector('img').alt = 'Dispositivo de Retorno IFL90 ABS BRANCO';
                 retorno.querySelector('p').innerHTML = 'Dispositivo de Retorno IFL90 ABS BRANCO cod: 99400764';
 
-                aspiracao.querySelector('img').src = 'https://imgur.com/D7E5izr.png';
+                aspiracao.querySelector('img').src = 'https://imgur.com/3p9q3fE.png';
                 aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPL15 BRANCO';
                 aspiracao.querySelector('p').innerHTML = 'Dispositivo de Aspiração VPL15 BRANCO cod: 99400715';
 
                 ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
                 ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
-                ralo.querySelector('p').innerHTML = '2X Ralo de Fundo CRP180RFV cod: 99401929';
+                ralo.querySelector('p').innerHTML = 'Ralo de Fundo CRP180RFV cod: 99401929';
                 ralo.style.display = 'flex';
+
+                coadeiraWl.style.display = 'flex';
 
             } else { // concreto
                 retorno.querySelector('img').src = 'https://imgur.com/Rl11bdX.png';
@@ -1515,7 +1680,21 @@
                 ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
                 ralo.querySelector('p').innerHTML = '2X Ralo de Fundo CRP180RFV cod: 99401929';
                 ralo.style.display = 'flex';
+
+                coadeiraWc.style.display = 'flex';
+                de5018.style.display = 'flex';
+                jgf280.style.display = 'flex';
+                jgf195.style.display = 'flex';
+                hidroterapia.style.display = 'flex';
             }
+
+            // Show universal items
+            coadeiraSv.style.display = 'flex';
+            trocador1.style.display = 'flex';
+            trocador2.style.display = 'flex';
+            trocador3.style.display = 'flex';
+            escada.style.display = 'flex';
+            botaoEmergencia.style.display = 'flex';
         }
 
         // Função para trocar entre passos do formulário
@@ -1582,65 +1761,15 @@
         }
 
         function exibirTrocadorDeCalor(volume, material, option) {
-            const trocadorCalorItem = document.getElementById(`trocador-calor-item-${option}`);
-            const bombaTrocadorItem = document.getElementById(`bomba-trocador-item-${option}`);
-            const trocadorCalorDesc = document.getElementById(`trocador-calor-desc-${option}`);
-            const bombaTrocadorDesc = document.getElementById(`bomba-trocador-desc-${option}`);
+            const jtc35 = document.getElementById(`jtc35-m2-item-${option}`);
+            const jtc50 = document.getElementById(`jtc50-m2-item-${option}`);
+            const jtc81 = document.getElementById(`jtc81-m2-item-${option}`);
+            const originalTrocador = document.getElementById(`trocador-calor-item-${option}`);
 
-            trocadorCalorItem.style.display = 'none';
-            bombaTrocadorItem.style.display = 'none';
-
-            if (volume > 0) {
-                let trocadorInfo = { img: '', desc: '', code: '' };
-                let bombaInfo = { img: '', desc: '', code: '' };
-
-                if (volume <= 35) {
-                    trocadorInfo = {
-                        img: 'https://imgur.com/emq7YNy.png',
-                        desc: 'Trocador de Calor JTC35-M2',
-                        code: '99501348'
-                    };
-                    bombaInfo = {
-                        img: 'https://imgur.com/nACsDK9.png',
-                        desc: '1x Bomba para Trocador de Calor 3F-M2/Monofasico cod:53020228 + Flow Disk Tech 17,8 mm cód.39306428 instalado na tubulação de descarga da bomba para vazão ~ 6,5 m³/h',
-                        code: '53020228 / 39306428'
-                    };
-                } else if (volume > 35 && volume <= 50) {
-                    trocadorInfo = {
-                        img: 'https://imgur.com/emq7YNy.png',
-                        desc: 'Trocador de Calor JTC50-M2',
-                        code: '99501215'
-                    };
-                    bombaInfo = {
-                        img: 'https://imgur.com/nACsDK9.png',
-                        desc: '1x bomba 3F-M2 cod:53020228 ou 25A-M cod:93571354 ou 3A-M cod:93571032',
-                        code: '53020228 / 93571354 / 93571032'
-                    };
-                } else if (volume > 50 && volume <= 81) {
-                    trocadorInfo = {
-                        img: 'https://imgur.com/emq7YNy.png',
-                        desc: 'Trocador de Calor JTC81-M2',
-                        code: '99501355'
-                    };
-                    bombaInfo = {
-                        img: 'https://imgur.com/nACsDK9.png',
-                        desc: '1x bomba 3F-M2 cod:53020228 ou 5F-M2 cod:53016895 ou 3A-M cod:93571032 ou 5A-M cod:93571057',
-                        code: '53020228 / 53016895 / 93571032 / 93571057'
-                    };
-                }
-
-                if (trocadorInfo.img) {
-                    trocadorCalorItem.querySelector('img').src = trocadorInfo.img;
-                    trocadorCalorItem.querySelector('img').alt = trocadorInfo.desc;
-                    trocadorCalorDesc.innerHTML = `${trocadorInfo.desc} cod: ${trocadorInfo.code}`;
-                    trocadorCalorItem.style.display = 'flex';
-
-                    bombaTrocadorItem.querySelector('img').src = bombaInfo.img;
-                    bombaTrocadorItem.querySelector('img').alt = bombaInfo.desc;
-                    bombaTrocadorDesc.innerHTML = `${bombaInfo.desc}`;
-                    bombaTrocadorItem.style.display = 'flex';
-                }
-            }
+            jtc35.style.display = 'flex';
+            jtc50.style.display = 'flex';
+            jtc81.style.display = 'flex';
+            originalTrocador.style.display = 'none';
         }
 
         function mostrarProdutosPorVazao(vazao, volume) {
