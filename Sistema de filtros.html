@@ -1,879 +1,2014 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Filtros - Catálogo Interativo</title>
+    <title>Especificador de equipamentos de piscinas Jacuzzi </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            /* Nova cor Jacuzzi Brasil */
+            --primary-blue: #006f95;
+            --primary-dark-blue: #005577;
+            --secondary-blue: #0088aa;
+            --dark-gray: #2b2b2b;
+            --medium-gray: #4a4a4a;
+            --light-gray: #f7f7f7;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            --text-primary: #2b2b2b;
+            --text-secondary: #555555;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --blue-gradient: linear-gradient(135deg, #006f95, #0088aa);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: var(--white);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 40px;
+            width: 100%;
+            background: var(--white);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .header h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-
-        .filter-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .filter-section h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .filter-group {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .filter-group:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .filter-group label {
+            width: 100%;
+            height: auto;
             display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
         }
 
-        .filter-group select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
+        .jacuzzi-logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            max-width: 180px;
+            height: auto;
+        }
+
+        .header-title {
+            background: var(--primary-blue);
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 15px 25px;
+            margin: 0;
             border-radius: 8px;
-            font-size: 16px;
-            background: white;
-            transition: border-color 0.3s ease;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            white-space: nowrap;
         }
 
-        .filter-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        h1, h2, h3 {
+            color: var(--white);
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+            padding: 20px 25px;
+            background: var(--primary-blue);
+            position: relative;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 5px;
         }
 
-        .clear-filters {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-transform: none;
+            letter-spacing: normal;
+            color: var(--white);
+            background: var(--primary-blue);
+            padding: 20px 25px;
+            border-radius: 8px;
         }
 
-        .clear-filters:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        h2 {
+            font-size: 1.7rem;
+            margin-bottom: 0;
+            font-weight: 600;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #f1f2f6, #ddd);
+        .main-content {
+            width: 95%;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: #667eea;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .top-panels {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .panel-1 {
+            flex: 0 0 400px;
+            max-width: 400px;
+            min-width: 400px;
+        }
+
+        .panel-1 .container {
+            background: #1798ba;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .panel-1 h2 {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 .container-content {
+            background: #1798ba;
+            height: calc(100% - 75px);
+            overflow-y: auto;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .panel-1 .container-content::-webkit-scrollbar-thumb {
+            background: var(--white);
+            border-radius: 10px;
+        }
+
+        .panel-1 label {
+            color: var(--white);
+        }
+
+        .panel-1 select, 
+        .panel-1 input {
+            background-color: var(--white);
+            color: var(--text-primary);
+            border: 1px solid var(--white);
+        }
+
+        .panel-1 button {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 button:hover {
+            background: var(--light-gray);
+            color: var(--primary-blue);
+        }
+
+        .panel-1 .resultado {
+            color: var(--white);
+        }
+
+        .panel-2, .panel-3 {
+            flex: 1;
+        }
+
+        .bottom-section {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .container {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            height: 100%;
         }
 
-        .product-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+        .container-content {
+            position: relative;
+            z-index: 1;
+            padding: 30px;
+            padding-top: 25px;
         }
 
-        .product-card:hover .product-image::before {
-            transform: translateX(100%);
+        .form-group {
+            margin-bottom: 22px;
         }
 
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #333;
+        label {
+            display: block;
             margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--medium-gray);
+            font-weight: 500;
         }
 
-        .product-specs {
-            color: #666;
+        select, input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 5px rgba(0, 111, 149, 0.3);
+        }
+
+        button, input[type="submit"] {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 111, 149, 0.25);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            margin-right: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background: var(--primary-dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 111, 149, 0.4);
+        }
+
+        .resultado {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            margin: 25px 0;
+            font-weight: 600;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .intervalo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .image-item {
+            flex: 0 0 calc(33.33% - 20px);
+            min-width: 220px;
+            max-width: 100%;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-bottom: 25px;
+            min-height: 350px;
+        }
+
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 111, 149, 0.15);
+        }
+
+        .image-item img {
+            width: 100%;
+            max-width: 180px;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: 5px;
+
+        }
+
+              .image-item p.product-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.5;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+        }
+
+        .image-item p strong {
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .image-item p {
+            font-weight: 500;
+        }
+
+        .image-item strong {
+            color: var(--primary-blue);
+        }
+
+        .tech-details {
+            background-color: var(--light-gray);
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border-left: 3px solid var(--primary-blue);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .back-btn i {
+            margin-right: 10px;
+        }
+
+        .volume-info {
+            display: flex;
+            justify-content: space-between;
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .volume-info div {
+            flex: 1;
+        }
+
+        .volume-info p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .volume-info strong {
+            color: var(--primary-blue);
+        }
+
+        .step-container {
+            display: none;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        .overflow-container {
+            max-height: 650px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .overflow-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .overflow-container::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .overflow-container::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 10px;
+        }
+
+        .option-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .top-panels {
+                flex-direction: column;
+            }
+
+            .panel-1 {
+                flex: none;
+                max-width: 100%;
+                min-width: 100%;
+            }
+
+            .panel-1 .container {
+                height: auto;
+                max-height: 500px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .image-item {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container-content {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .image-item {
+                flex: 0 0 100%;
+                min-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .images-container, .intervalo-container {
+                gap: 20px;
+            }
+
+            .volume-info {
+                flex-direction: column;
+            }
+
+            .volume-info div {
+                margin-bottom: 15px;
+            }
+
+            .logo {
+                max-width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container-content {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 15px 10px;
+            }
+
+            button, input[type="submit"] {
+                padding: 12px 22px;
+                font-size: 0.95rem;
+            }
+
+            .image-item {
+                padding: 15px;
+            }
+
+            .image-item img {
+                max-width: 160px;
+                height: 130px;
+            }
+        }
+
+        /* Animações */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .tech-glow {
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer Styles */
+        .footer {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 0 20px 0;
+            margin-top: 60px;
+            border-top: 3px solid var(--secondary-blue);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-gray);
+            border-bottom-color: var(--light-gray);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-social h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-company-info {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
-        .product-specs strong {
-            color: #333;
+        .footer-company-info p {
+            margin: 5px 0;
         }
 
-        .download-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: all 0.3s ease;
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .footer-company-info {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Material selection styling */
+        .material-selection {
+            background: #1798ba;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .material-selection label {
+            color: var(--white) !important;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .material-selection select {
+            background: var(--white);
+            color: var(--text-primary);
+            border: 2px solid var(--white);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 6px;
             width: 100%;
         }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        .material-selection select:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 8px rgba(0, 136, 170, 0.3);
         }
 
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-            font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            margin-top: 30px;
-        }
-
-        .no-results::before {
-            content: '🔍';
-            display: block;
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        /* MEDIA QUERIES PARA MOBILE */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .header {
-                margin-bottom: 20px;
-                padding: 20px 15px;
-                border-radius: 15px;
-            }
-
-            .logo {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
-                margin-bottom: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .filter-section {
-                padding: 20px 15px;
-                margin-bottom: 20px;
-                border-radius: 12px;
-            }
-
-            .filter-section h2 {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-            }
-
-            .filter-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                margin-bottom: 15px;
-            }
-
-            .filter-group {
-                padding: 15px;
-                border-radius: 8px;
-            }
-
-            .filter-group select {
-                padding: 12px;
-                font-size: 16px;
-                border-radius: 6px;
-            }
-
-            .clear-filters {
-                width: 100%;
-                padding: 14px 20px;
-                font-size: 16px;
-                border-radius: 8px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin-top: 20px;
-            }
-
-            .product-card {
-                border-radius: 12px;
-            }
-
-            .product-image {
-                height: 150px;
-                font-size: 36px;
-            }
-
-            .product-info {
-                padding: 15px;
-            }
-
-            .product-title {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-            }
-
-            .product-specs {
-                font-size: 0.85rem;
-                line-height: 1.5;
-            }
-
-            .download-btn {
-                padding: 12px 16px;
-                font-size: 14px;
-                margin-top: 12px;
-                border-radius: 8px;
-            }
-
-            .no-results {
-                padding: 40px 15px;
-                font-size: 1rem;
-                margin-top: 20px;
-                border-radius: 12px;
-            }
-
-            .no-results::before {
-                font-size: 3rem;
-                margin-bottom: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 8px;
-            }
-
-            .header {
-                padding: 15px 10px;
-            }
-
-            .logo {
-                width: 70px;
-                height: 70px;
-                font-size: 28px;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .header p {
-                font-size: 0.9rem;
-            }
-
-            .filter-section {
-                padding: 15px 10px;
-            }
-
-            .filter-section h2 {
-                font-size: 1.2rem;
-            }
-
-            .filter-group {
-                padding: 12px;
-            }
-
-            .product-image {
-                height: 120px;
-                font-size: 32px;
-            }
-
-            .product-info {
-                padding: 12px;
-            }
-
-            .product-title {
-                font-size: 1rem;
-            }
-
-            .product-specs {
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Melhorias para scroll em mobile */
-        @media (max-width: 768px) {
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .filter-section {
-                position: relative;
-                z-index: 1;
-            }
-
-            .products-grid {
-                position: relative;
-                z-index: 1;
-            }
-
-            /* Garantir que elementos interativos funcionem bem no touch */
-            .filter-group select,
-            .clear-filters,
-            .download-btn {
-                -webkit-appearance: none;
-                -webkit-tap-highlight-color: transparent;
-                touch-action: manipulation;
-            }
-
-            /* Melhorar área de toque dos botões */
-            .clear-filters,
-            .download-btn {
-                min-height: 44px;
-            }
-        }
-        /* MEDIA QUERIES PARA MOBILE */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .header {
-                margin-bottom: 20px;
-                padding: 20px 15px;
-                border-radius: 15px;
-            }
-
-            .logo {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
-                margin-bottom: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .filter-section {
-                padding: 20px 15px;
-                margin-bottom: 20px;
-                border-radius: 12px;
-            }
-
-            .filter-section h2 {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-            }
-
-            .filter-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                margin-bottom: 15px;
-            }
-
-            .filter-group {
-                padding: 15px;
-                border-radius: 8px;
-            }
-
-            .filter-group select {
-                padding: 12px;
-                font-size: 16px;
-                border-radius: 6px;
-            }
-
-            .clear-filters {
-                width: 100%;
-                padding: 14px 20px;
-                font-size: 16px;
-                border-radius: 8px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin-top: 20px;
-            }
-
-            .product-card {
-                border-radius: 12px;
-            }
-
-            .product-image {
-                height: 150px;
-                font-size: 36px;
-            }
-
-            .product-info {
-                padding: 15px;
-            }
-
-            .product-title {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-            }
-
-            .product-specs {
-                font-size: 0.85rem;
-                line-height: 1.5;
-            }
-
-            .download-btn {
-                padding: 12px 16px;
-                font-size: 14px;
-                margin-top: 12px;
-                border-radius: 8px;
-            }
-
-            .no-results {
-                padding: 40px 15px;
-                font-size: 1rem;
-                margin-top: 20px;
-                border-radius: 12px;
-            }
-
-            .no-results::before {
-                font-size: 3rem;
-                margin-bottom: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 8px;
-            }
-
-            .header {
-                padding: 15px 10px;
-            }
-
-            .logo {
-                width: 70px;
-                height: 70px;
-                font-size: 28px;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .header p {
-                font-size: 0.9rem;
-            }
-
-            .filter-section {
-                padding: 15px 10px;
-            }
-
-            .filter-section h2 {
-                font-size: 1.2rem;
-            }
-
-            .filter-group {
-                padding: 12px;
-            }
-
-            .product-image {
-                height: 120px;
-                font-size: 32px;
-            }
-
-            .product-info {
-                padding: 12px;
-            }
-
-            .product-title {
-                font-size: 1rem;
-            }
-
-            .product-specs {
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Melhorias para scroll em mobile */
-        @media (max-width: 768px) {
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .filter-section {
-                position: relative;
-                z-index: 1;
-            }
-
-            .products-grid {
-                position: relative;
-                z-index: 1;
-            }
-
-            /* Garantir que elementos interativos funcionem bem no touch */
-            .filter-group select,
-            .clear-filters,
-            .download-btn {
-                -webkit-appearance: none;
-                -webkit-tap-highlight-color: transparent;
-                touch-action: manipulation;
-            }
-
-            /* Melhorar área de toque dos botões */
-            .clear-filters,
-            .download-btn {
-                min-height: 44px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">SF</div>
-            <h1>Sistema de Filtros</h1>
-            <p>Catálogo Técnico Interativo</p>
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/vBnPZFHF/Capa-especificador-1.png" alt="Header Background" class="logo">
+            <img src="https://i.postimg.cc/xdt1sCwg/Jacuzzi-white-logo.png" alt="Jacuzzi Logo" class="jacuzzi-logo">
+            <h1 class="header-title">ESPECIFICADOR DE EQUIPAMENTOS DE PISCINA JACUZZI®</h1>
         </div>
+    </div>
 
-        <div class="filter-section">
-            <h2>Filtros de Busca</h2>
-            <div class="filter-grid">
-                <div class="filter-group">
-                    <label for="tipo">Tipo de Produto:</label>
-                    <select id="tipo">
-                        <option value="">Todos os tipos</option>
-                        <option value="filtro">Filtro</option>
-                        <option value="bomba">Bomba</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="modelo">Modelo:</label>
-                    <select id="modelo">
-                        <option value="">Todos os modelos</option>
-                        <option value="12tp">12TP</option>
-                        <option value="15tp">15TP</option>
-                        <option value="16tp">16TP</option>
-                        <option value="19tp">19TP</option>
-                        <option value="22tp">22TP</option>
-                        <option value="26tp">26TP</option>
-                        <option value="30tp">30TP</option>
-                        <option value="32tp">32TP</option>
-                        <option value="bombaA">Bomba A</option>
-                        <option value="bombaB">Bomba B</option>
-                        <option value="bombaF">Bomba F</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="aplicacao">Aplicação:</label>
-                    <select id="aplicacao">
-                        <option value="">Todas as aplicações</option>
-                        <option value="residencial">Residencial</option>
-                        <option value="comercial">Comercial</option>
-                        <option value="industrial">Industrial</option>
-                    </select>
+    <div class="main-content">
+        <div class="top-panels">
+            <div class="panel-1">
+                <div class="container">
+                    <h2><i class="fas fa-swimming-pool"></i> Especificações<br>da Piscina</h2>
+                    <div class="container-content">
+                            <div class="form-group">
+                                     <button type="button" onclick="window.open('./attached_assets/BI-212 - FILTROS TP-F BOMBAS FlowWay.pdf', '_blank')"><i class="fas fa-table"></i> Tabela de seleção</button>
+                                </div>
+                        <div id="step-1" class="step-container active">
+                            <form id="profundidadeForm">
+                                <div class="form-group">
+                                    <label for="profundidade"><i class="fas fa-arrows-alt-v"></i> Profundidade Média (m):</label>
+                                    <input type="number" step="0.01" id="profundidade" name="profundidade" placeholder="Digite a profundidade média da piscina" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipo"><i class="fas fa-tag"></i> Tipo de Piscina:</label>
+                                    <select id="tipo" name="tipo">
+                                        <option value="residencial_privativa">Residencial Privativa</option>
+                                        <option value="residencial_coletiva">Residencial Coletiva</option>
+                                        <option value="alta_taxa_ocupacao">Alta Taxa de Ocupação</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" id="proximo-btn"><i class="fas fa-arrow-right"></i> Próximo</button>
+                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
+                                </div>
+
+                            </form>
+
+                            <hr style="margin: 20px 0;">
+
+                            <form id="volumeForm">
+                                <div class="form-group">
+                                    <label for="volume_direto"><i class="fas fa-cube"></i> Ou Insira o Volume (m³):</label>
+                                    <input type="number" step="0.01" id="volume_direto" name="volume_direto" placeholder="Digite o volume da piscina em m³">
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" id="calcular-volume-btn"><i class="fas fa-calculator"></i> Calcular por Volume</button>
+                                    <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn-inicial"><i class="fas fa-sync-alt"></i> Recalcular</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="step-2" class="step-container">
+                            <h3 style="font-size: 1.4rem;"><i class="fas fa-ruler-combined"></i> Dimensões da Piscina</h3>
+                            <div class="resultado tech-glow">
+                                <p id="tempo"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tempo-recirculacao"><i class="fas fa-clock"></i> Alterar Tempo de Recirculação (horas):</label>
+                                <select id="tempo-recirculacao" name="tempo-recirculacao" disabled>
+                                    <option value="8">8 horas</option>
+                                    <option value="6">6 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="2">2 horas</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="comprimento-final"><i class="fas fa-arrows-alt-h"></i> Comprimento (m):</label>
+                                <input type="number" step="0.01" id="comprimento-final" name="comprimento-final" placeholder="Digite o comprimento final" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="largura-final"><i class="fas fa-rulers"></i> Largura (m):</label>
+                                <input type="number" step="0.01" id="largura-final" name="largura-final" placeholder="Digite a largura final" required>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" onclick="voltarPasso(1)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                                <button type="button" onclick="calcularVolume()"><i class="fas fa-calculator"></i> Calcular</button>
+                                <button onclick="reiniciarCalculos()" style="display: none;" id="recalcular-btn"><i class="fas fa-sync-alt"></i> Recalcular</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button class="clear-filters" onclick="clearFilters()">Limpar Filtros</button>
+
+            <div class="panel-2">
+                <div class="container">
+                    <h2>Produtos Recomendados<br>Opção 1</h2>
+                    <div class="container-content">
+
+                        <div id="resultado-area">
+                            <div id="instrucoes-iniciais">
+                                <p style="text-align: center; margin: 50px 0;">
+                                    <i class="fas fa-info-circle" style="font-size: 48px; color: var(--primary-blue);"></i>
+                                    <br><br>
+                                    Preencha as informações no painel à esquerda para ver os produtos recomendados.
+                                </p>
+                            </div>
+
+                            <div id="resultado-produtos" style="display: none;">
+                                <div class="volume-info">
+                                    <div>
+                                        <p><strong><i class="fas fa-water"></i> Volume da Piscina:</strong> <span id="volume"></span> m³</p>
+                                    </div>
+                                    <div>
+                                        <p><strong>Vazão m³/h:</strong> <span id="resultado-divisao"></span></p>
+                                    </div>
+                                </div>
+
+                                   <div class="overflow-container">
+                                    <div id="imagens-exibidas" class="images-container">
+                                        <!-- Intervalos de produtos -->
+                                        <div id="intervalo-ate-2-5" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
+                                                
+                                                <p class="product-description">1 Filtro 12TP cod:98005804</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 25A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">1 Bomba 25A-M/Monofásico cod:93571354</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Continue with all other intervals... -->
+                                        <div id="intervalo-2-6-5-5" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
+                                                
+                                                <p class="product-description">Filtro 15TP cod:98005820</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-5-6-7-0" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/K5w4J2f.png" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                                                
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/S8wchnu.png" alt="Bomba 3-AT" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 3A-T/Trifásico cod:93571040 e 3A-M/Monofásico cod:93571032</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-7-1-8-7" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                                                
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 5F-M1/M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                                
+                                                <p class="product-description">BOMBA 5F-M1 cod:53017281/5F-M2 cod:53016895 ou BOMBA 5A-M cod:93571057/5 A-T cod:93571065</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-8-8-9-5" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP" onclick="abrirPDFFiltro19()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 19TP">
+                                                
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-9-6-10-4" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fFV4.Filtro-19TP.jpeg" alt="Filtro 19TP">
+                                                
+                                                <p class="product-description">Filtro 19TP cod:98005846</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 7A-M/7A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 7A-M cod:93571073/ 7A-T cod:93571081</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">5x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-10-5-10-9" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP">
+                                                
+                                                <p class="product-description">Filtro 22TP cod:98005226</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4VG0K.Bomba-1F-M2OUM1.webp" alt="Bomba 1F-M2/M1" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                                
+                                                <p class="product-description">BOMBA 1F-M2 cod:53016903/ M1 cod:53017299</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-10-10-11-7" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4f1rC.Filtro-22TP.webp" alt="Filtro 22TP" onclick="abrirPDFFiltro22()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 22TP">
+                                                
+                                                <p class="product-description">Filtro 22TP cod:98005226</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/X29Leu4.png" alt="Bomba 1A-M/1A-T" onclick="abrirbombaA()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 1A-M cod:93571099/ A-T cod:93571107</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">6x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-11-8-17-0" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4f25q.Filtro-26TP.png" alt="Filtro 26TP" onclick="abrirPDFFiltro26()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 26TP">
+                                                
+                                                <p class="product-description">Filtro 26TP cod:98005200</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-17-1-17-3" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
+                                                
+                                                <p class="product-description">Filtro 30TP cod:98005176</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba B">
+                                                
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-17-4-20-5" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fSgp.Filtro-30TP.png" alt="Filtro 30TP" onclick="abrirPDFFiltro30()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 30TP">
+                                                
+                                                <p class="product-description">Filtro 30TP cod:98005176</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 2B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 2B-M cod:93571461/B-T cod:93571479</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">10x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="intervalo-20-6-23-5" class="intervalo-container" style="display: none;">
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fTD8.Filtro-32tp.jpeg" alt="Filtro 32TP" onclick="abrirPDFFiltro32()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 32TP">
+                                                
+                                                <p class="product-description">Filtro 32TP cod:98005119</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://i.im.ge/2025/01/13/z4fXJM.bomba-7A-M.jpeg" alt="Bomba 15B-M/B-T" onclick="abrirbombaB()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba A">
+                                                
+                                                <p class="product-description">BOMBA 15B-M cod:93571446/B-T cod:93571453</p>
+                                            </div>
+                                            <div class="image-item">
+                                                <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                                
+                                                <p class="product-description">8x Areia Ensacada para Filtro cod:22485106</p>
+                                            </div>
+                                            <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                                <button type="button" onclick="mostrarItensRelacionados(1)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                            </div>
+                                        </div>
+
+                                        
+        <div id="material-selection-1" class="material-selection" style="display: none;">
+            <div class="form-group">
+                <label for="material-relacionados-1"><i class="fas fa-gem"></i> Material da Piscina:</label>
+                <select id="material-relacionados-1" name="material-relacionados-1" required>
+                    <option value="" disabled selected>Selecione o material</option>
+                    <option value="vinil">Vinil</option>
+                    <option value="fibra">Fibra</option>
+                    <option value="concreto">Concreto</option>
+                </select>
+            </div>
         </div>
 
-        <div class="products-grid" id="products-grid">
-            <!-- Os produtos serão inseridos aqui pelo JavaScript -->
-        </div>
+                                        <div id="dispositivos-1" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
+                                            <div class="image-item" id="dispositivo-retorno-1">
+                                                <img src="" alt="">
+                                                
+                                                <p class="product-description"></p>
+                                            </div>
+                                            <div class="image-item" id="dispositivo-aspiracao-1">
+                                                <img src="" alt="">
+                                                
+                                                <p class="product-description"></p>
+                                            </div>
+                                            <div class="image-item" id="ralo-fundo-1">
+                                                <img src="" alt="">
+                                                
+                                                <p class="product-description"></p>
+                                            </div>
+                                            <div class="image-item" id="modulo-controlador-1">
+                                                <img src="https://imgur.com/0U3HAaz.png" alt="Modulo controlador">
+                                                
+                                                <p class="product-description">Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                            </div>
+                                            <div class="image-item" id="refletor-jway-1">
+                                                <img src="https://imgur.com/zbFWr9i.png" alt="LED">
+                                                
+                                                <p class="product-description">#REFLETOR LED PROLITE JWAY-20 cod: 99802324</p>
+                                            </div>
+                                            <div class="image-item" id="trocador-calor-item-1" style="display: none;">
+                                                <img src="" alt="Trocador de Calor">
+                                                
+                                                <p class="product-description" id="trocador-calor-desc-1"></p>
+                                            </div>
+                                            <div class="image-item" id="bomba-trocador-item-1" style="display: none;">
+                                                <img src="" alt="Bomba para Trocador de Calor">
+                                                
+                                                <p class="product-description" id="bomba-trocador-desc-1"></p>
+                                            </div>
 
-        <div class="no-results" id="no-results" style="display: none;">
-            Nenhum produto encontrado com os filtros selecionados.
+                                            <div class="image-item" id="trocador-calor-jtc35fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC35FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC35FIW-M2 cod: 99501637</p>
+                                            </div>
+                                            <div class="image-item" id="trocador-calor-jtc50fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC50FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC50FIW-M2 cod: 99501645</p>
+                                            </div>
+                                            <div class="image-item" id="trocador-calor-jtc81fiw-m2-1" style="display: none;">
+                                                <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC81FIW-M2">
+                                                <p class="product-description">TROCADOR DE CALOR - JTC81FIW-M2 cod: 99501652</p>
+                                            </div>
+                                            <div class="image-item" id="de50-18-1" style="display: none;">
+                                                <img src="https://imgur.com/iDIjsZh.png" alt="DE50-18">
+                                                <p class="product-description">DE50-18 cod: 99401861</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wc-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WC-II">
+                                                <p class="product-description">COADEIRA #WC-II cod: 99401002</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wf-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WF-II">
+                                                <p class="product-description">COADEIRA #WF-II cod: 99401028</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-wl-1" style="display: none;">
+                                                <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WL-II">
+                                                <p class="product-description">COADEIRA #WL-II cod: 99401010</p>
+                                            </div>
+                                            <div class="image-item" id="coadeira-sv-1" style="display: none;">
+                                                <img src="https://imgur.com/4Mic09a.png" alt="COADEIRA #SV">
+                                                <p class="product-description">COADEIRA #SV cod: 99401044</p>
+                                            </div>
+
+                                            <div class="image-item" id="jtc35-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC35-M2">
+                                                <p class="product-description">Trocador de Calor JTC35-M2 cod: 99501348</p>
+                                            </div>
+                                            <div class="image-item" id="jtc50-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC50-M2">
+                                                <p class="product-description">Trocador de Calor JTC50-M2 cod: 99501215</p>
+                                            </div>
+                                            <div class="image-item" id="jtc81-m2-item-1" style="display: none;">
+                                                <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC81-M2">
+                                                <p class="product-description">Trocador de Calor JTC81-M2 cod: 99501355</p>
+                                            </div>
+
+                                            <div class="image-item" id="jgf280-item-1" style="display: none;">
+                                                <img src="https://imgur.com/Sg2yUlx.png" alt="JGF280">
+                                                <p class="product-description">JGF280 cod: 99400410</p>
+                                            </div>
+                                            <div class="image-item" id="jgf195-item-1" style="display: none;">
+                                                <img src="https://imgur.com/958xLmL.png" alt="JGF 195">
+                                                <p class="product-description">JGF 195 cod: 99400806</p>
+                                            </div>
+
+                                            <div class="image-item" id="escada-item-1" style="display: none;">
+                                                <img src="https://imgur.com/VEI1dUy.png" alt="ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato">
+                                                <p class="product-description">ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato cod: 99200826</p>
+                                            </div>
+                                            <div class="image-item" id="botao-emergencia-item-1" style="display: none;">
+                                                <img src="https://imgur.com/kkt3SkJ.png" alt="BOTÃO DE EMERGÊNCIA">
+                                                <p class="product-description">BOTÃO DE EMERGÊNCIA cod: 99401879</p>
+                                            </div>
+
+                                            <div class="image-item" id="hidroterapia-item-1" style="display: none;">
+                                                <img src="https://imgur.com/MMQoKpE.png" alt="DISPOSITIVO HIDROTERAPIA #PLC1215B">
+                                                <p class="product-description">DISPOSITIVO HIDROTERAPIA #PLC1215B cod: 99600132</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-3">
+                <div class="container">
+                    <h2>Produtos Recomendados<br>Opção 2</h2>
+                    <div class="container-content">
+
+                        <div id="instrucoes-iniciais-2">
+                            <p style="text-align: center; margin: 50px 0;">
+                                <i class="fas fa-info-circle" style="font-size: 48px; color: var(--primary-blue);"></i>
+                                <br><br>
+                                Preencha as informações no painel à esquerda para ver os produtos recomendados.
+                            </p>
+                        </div>
+
+                        <div id="resultado-produtos-2" style="display: none;">
+                            <div class="volume-info">
+                                <div>
+                                    <p><strong><i class="fas fa-water"></i> Volume da Piscina:</strong> <span id="volume-2"></span> m³</p>
+                                </div>
+                                <div>
+                                    <p><strong>Vazão m³/h:</strong> <span id="resultado-divisao-2"></span></p>
+                                </div>
+                            </div>
+                            <div class="overflow-container">
+                                <div id="imagens-exibidas-2" class="images-container">
+                                    <div id="intervalo-ate-2-5-opcao-2" class="intervalo-container" style="display: none;">
+                                        <div class="image-item">
+                                            <img src="https://imgur.com/xsVuYTw.png" alt="Filtro 12TP-F" onclick="abrirPDFFiltro12()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 12TP">
+                                            
+                                            <p class="product-description">1 Filtro 12TP-F cod:98500499</p>
+                                        </div>
+                                        <div class="image-item">
+                                            <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                            
+                                            <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
+                                        </div>
+                                        <div class="image-item">
+                                            <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                            
+                                            <p class="product-description">1x Saco Areia Ensacada para Filtro cod:22485106</p>
+                                        </div>
+                                        <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                            <button type="button" onclick="mostrarItensRelacionados(2)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                        </div>
+                                    </div>
+                                    <div id="intervalo-2-6-5-5-opcao-2" class="intervalo-container" style="display: none;">
+                                        <div class="image-item">
+                                            <img src="https://imgur.com/7Hzw7Q5.png" alt="Filtro 15TP-F" onclick="abrirPDFFiltro15()" style="cursor: pointer;" title="Clique para ver o catálogo do Filtro 15TP">
+                                            
+                                            <p class="product-description">Filtro 15TP-F cod:98500507</p>
+                                        </div>
+                                        <div class="image-item">
+                                            <img src="https://i.im.ge/2025/01/13/z4Veg9.Bomba-5F-M1-ou-M2.jpeg" alt="Bomba 3F-M2" onclick="abrirbombaF()" style="cursor: pointer;" title="Clique para ver o catálogo da Bomba F">
+                                            
+                                            <p class="product-description">1 Bomba 3F-M2/Monofásico cod:53020228</p>
+                                        </div>
+                                        <div class="image-item">
+                                            <img src="https://imgur.com/QrPZDFn.png" alt="Areia Ensacada">
+                                            
+                                            <p class="product-description">2x Areia Ensacada para Filtro cod:22485106</p>
+                                        </div>
+                                        <div class="form-group" style="width: 100%; text-align: center; margin-top: 20px;">
+                                            <button type="button" onclick="mostrarItensRelacionados(2)"><i class="fas fa-plus"></i> Ver Itens Relacionados</button>
+                                        </div>
+                                    </div>
+
+                                    
+                    <div id="material-selection-2" class="material-selection" style="display: none;">
+                        <div class="form-group">
+                            <label for="material-relacionados-2"><i class="fas fa-gem"></i> Material da Piscina:</label>
+                            <select id="material-relacionados-2" name="material-relacionados-2" required>
+                                <option value="" disabled selected>Selecione o material</option>
+                                <option value="vinil">Vinil</option>
+                                <option value="fibra">Fibra</option>
+                                <option value="concreto">Concreto</option>
+                            </select>
+                        </div>
+                    </div>
+
+                                    <div id="dispositivos-2" style="display: none; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%;">
+                                        <div class="image-item" id="dispositivo-retorno-2">
+                                            <img src="" alt="">
+                                            
+                                            <p class="product-description"></p>
+                                        </div>
+                                        <div class="image-item" id="dispositivo-aspiracao-2">
+                                            <img src="" alt="">
+                                            
+                                            <p class="product-description"></p>
+                                        </div>
+                                        <div class="image-item" id="ralo-fundo-2">
+                                            <img src="" alt="">
+                                            
+                                            <p class="product-description"></p>
+                                        </div>
+                                        <div class="image-item" id="modulo-controlador-2">
+                                            <img src="https://imgur.com/0U3HAaz.png" alt="Modulo controlador">
+                                            
+                                            <p class="product-description">Modulo controlador prolite 4 LEDS JMCW-04 (99802340) ou Modulo controlador prolite 8 LEDS JMCW-08 (99802126)</p>
+                                        </div>
+                                        <div class="image-item" id="refletor-jway-2">
+                                            <img src="https://imgur.com/zbFWr9i.png" alt="LED">
+                                            
+                                            <p class="product-description">#REFLETOR LED PROLITE JWAY-20 cod: 99802324</p>
+                                        </div>
+                                        <div class="image-item" id="trocador-calor-item-2" style="display: none;">
+                                            <img src="" alt="Trocador de Calor">
+                                            
+                                            <p class="product-description" id="trocador-calor-desc-2"></p>
+                                        </div>
+                                        <div class="image-item" id="bomba-trocador-item-2" style="display: none;">
+                                            <img src="" alt="Bomba para Trocador de Calor">
+                                            
+                                            <p class="product-description" id="bomba-trocador-desc-2"></p>
+                                        </div>
+
+                                        <div class="image-item" id="trocador-calor-jtc35fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC35FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC35FIW-M2 cod: 99501637</p>
+                                        </div>
+                                        <div class="image-item" id="trocador-calor-jtc50fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC50FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC50FIW-M2 cod: 99501645</p>
+                                        </div>
+                                        <div class="image-item" id="trocador-calor-jtc81fiw-m2-2" style="display: none;">
+                                            <img src="https://imgur.com/5M2uNqg.png" alt="TROCADOR DE CALOR - JTC81FIW-M2">
+                                            <p class="product-description">TROCADOR DE CALOR - JTC81FIW-M2 cod: 99501652</p>
+                                        </div>
+                                        <div class="image-item" id="de50-18-2" style="display: none;">
+                                            <img src="https://imgur.com/iDIjsZh.png" alt="DE50-18">
+                                            <p class="product-description">DE50-18 cod: 99401861</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wc-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WC-II">
+                                            <p class="product-description">COADEIRA #WC-II cod: 99401002</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wf-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WF-II">
+                                            <p class="product-description">COADEIRA #WF-II cod: 99401028</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-wl-2" style="display: none;">
+                                            <img src="https://imgur.com/uExvk0B.png" alt="COADEIRA #WL-II">
+                                            <p class="product-description">COADEIRA #WL-II cod: 99401010</p>
+                                        </div>
+                                        <div class="image-item" id="coadeira-sv-2" style="display: none;">
+                                            <img src="https://imgur.com/4Mic09a.png" alt="COADEIRA #SV">
+                                            <p class="product-description">COADEIRA #SV cod: 99401044</p>
+                                        </div>
+
+                                        <div class="image-item" id="jtc35-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC35-M2">
+                                            <p class="product-description">Trocador de Calor JTC35-M2 cod: 99501348</p>
+                                        </div>
+                                        <div class="image-item" id="jtc50-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC50-M2">
+                                            <p class="product-description">Trocador de Calor JTC50-M2 cod: 99501215</p>
+                                        </div>
+                                        <div class="image-item" id="jtc81-m2-item-2" style="display: none;">
+                                            <img src="https://imgur.com/emq7YNy.png" alt="Trocador de Calor JTC81-M2">
+                                            <p class="product-description">Trocador de Calor JTC81-M2 cod: 99501355</p>
+                                        </div>
+
+                                        <div class="image-item" id="jgf280-item-2" style="display: none;">
+                                            <img src="https://imgur.com/Sg2yUlx.png" alt="JGF280">
+                                            <p class="product-description">JGF280 cod: 99400410</p>
+                                        </div>
+                                        <div class="image-item" id="jgf195-item-2" style="display: none;">
+                                            <img src="https://imgur.com/958xLmL.png" alt="JGF 195">
+                                            <p class="product-description">JGF 195 cod: 99400806</p>
+                                        </div>
+
+                                        <div class="image-item" id="escada-item-2" style="display: none;">
+                                            <img src="https://imgur.com/VEI1dUy.png" alt="ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato">
+                                            <p class="product-description">ESCADA #3LB 3 DEGRAUS/para tamanhos maiores entre em contato cod: 99200826</p>
+                                        </div>
+                                        <div class="image-item" id="botao-emergencia-item-2" style="display: none;">
+                                            <img src="https://imgur.com/kkt3SkJ.png" alt="BOTÃO DE EMERGÊNCIA">
+                                            <p class="product-description">BOTÃO DE EMERGÊNCIA cod: 99401879</p>
+                                        </div>
+
+                                        <div class="image-item" id="hidroterapia-item-2" style="display: none;">
+                                            <img src="https://imgur.com/MMQoKpE.png" alt="DISPOSITIVO HIDROTERAPIA #PLC1215B">
+                                            <p class="product-description">DISPOSITIVO HIDROTERAPIA #PLC1215B cod: 99600132</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const products = [
-            {
-                id: 1,
-                name: "Filtro 12TP",
-                type: "filtro",
-                model: "12tp",
-                application: "residencial",
-                specs: "Vazão: 12 L/min | Pressão: 2 bar | Material: Aço Inox",
-                file: "tp 12_1752806762923.pdf"
-            },
-            {
-                id: 2,
-                name: "Filtro 15 - Catálogo",
-                type: "filtro",
-                model: "15tp",
-                application: "residencial",
-                specs: "Vazão: 15 L/min | Pressão: 2.5 bar | Material: Aço Inox",
-                file: "FILTRO 15 CATALOGO_1752781854586.pdf"
-            },
-            {
-                id: 3,
-                name: "Filtro 16TP",
-                type: "filtro",
-                model: "16tp",
-                application: "comercial",
-                specs: "Vazão: 16 L/min | Pressão: 3 bar | Material: Aço Inox",
-                file: "16tp_1752806805905.pdf"
-            },
-            {
-                id: 4,
-                name: "Filtro 19TP",
-                type: "filtro",
-                model: "19tp",
-                application: "comercial",
-                specs: "Vazão: 19 L/min | Pressão: 3.5 bar | Material: Aço Inox",
-                file: "19tp_1752806835456.pdf"
-            },
-            {
-                id: 5,
-                name: "Filtro 22TP",
-                type: "filtro",
-                model: "22tp",
-                application: "industrial",
-                specs: "Vazão: 22 L/min | Pressão: 4 bar | Material: Aço Inox",
-                file: "22tp_1752806923430.pdf"
-            },
-            {
-                id: 6,
-                name: "Filtro 26TP",
-                type: "filtro",
-                model: "26tp",
-                application: "industrial",
-                specs: "Vazão: 26 L/min | Pressão: 4.5 bar | Material: Aço Inox",
-                file: "26tp_1752806974422.pdf"
-            },
-            {
-                id: 7,
-                name: "Filtro 30TP",
-                type: "filtro",
-                model: "30tp",
-                application: "industrial",
-                specs: "Vazão: 30 L/min | Pressão: 5 bar | Material: Aço Inox",
-                file: "30tp_1752807008910.pdf"
-            },
-            {
-                id: 8,
-                name: "Filtro 32TP",
-                type: "filtro",
-                model: "32tp",
-                application: "industrial",
-                specs: "Vazão: 32 L/min | Pressão: 5.5 bar | Material: Aço Inox",
-                file: "32tp_1752807047489.pdf"
-            },
-            {
-                id: 9,
-                name: "Bomba Modelo A",
-                type: "bomba",
-                model: "bombaA",
-                application: "residencial",
-                specs: "Potência: 0.5 HP | Vazão: 20 L/min | Altura: 15m",
-                file: "bombaA.pdf"
-            },
-            {
-                id: 10,
-                name: "Bomba Modelo B",
-                type: "bomba",
-                model: "bombaB",
-                application: "comercial",
-                specs: "Potência: 1 HP | Vazão: 35 L/min | Altura: 25m",
-                file: "bombaB.pdf"
-            },
-            {
-                id: 11,
-                name: "Bomba Modelo F",
-                type: "bomba",
-                model: "bombaF",
-                application: "industrial",
-                specs: "Potência: 2 HP | Vazão: 50 L/min | Altura: 40m",
-                file: "bombaF.pdf"
-            }
+        let profundidade, tipoPiscina, tempoRecirculacao;
+
+        const productRanges = [
+            { range: [0, 2.5], id: "intervalo-ate-2-5" },
+            { range: [2.6, 5.5], id: "intervalo-2-6-5-5" },
+            { range: [5.6, 7.0], id: "intervalo-5-6-7-0" },
+            { range: [7.1, 8.7], id: "intervalo-7-1-8-7" },
+            { range: [8.8, 9.5], id: "intervalo-8-8-9-5" },
+            { range: [9.6, 10.4], id: "intervalo-9-6-10-4" },
+            { range: [10.5, 10.9], id: "intervalo-10-5-10-9" },
+            { range: [10.10, 11.7], id: "intervalo-10-10-11-7" },
+            { range: [11.8, 17.0], id: "intervalo-11-8-17-0" },
+            { range: [17.1, 17.3], id: "intervalo-17-1-17-3" },
+            { range: [17.4, 20.5], id: "intervalo-17-4-20-5" },
+            { range: [20.6, 23.5], id: "intervalo-20-6-23-5" },
         ];
 
-        function renderProducts(productsToRender = products) {
-            const grid = document.getElementById('products-grid');
-            const noResults = document.getElementById('no-results');
-            
-            if (productsToRender.length === 0) {
-                grid.style.display = 'none';
-                noResults.style.display = 'block';
+        function abrirPDFFiltro12() {
+            window.open('./attached_assets/tp 12_1752806762923.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro15() {
+            window.open('./attached_assets/FILTRO 15 CATALOGO_1752781854586.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro19() {
+            window.open('./attached_assets/19tp_1752806835456.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro22() {
+            window.open('./attached_assets/22tp_1752806923430.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro26() {
+            window.open('./attached_assets/26tp_1752806974422.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro30() {
+            window.open('./attached_assets/30tp_1752807008910.pdf', '_blank');
+        }
+
+        function abrirPDFFiltro32() {
+            window.open('./attached_assets/32tp_1752807047489.pdf', '_blank');
+        }
+
+        function abrirbombaA() {
+            window.open('./attached_assets/bombaA.pdf', '_blank');
+        }
+
+        function abrirbombaB() {
+            window.open('./attached_assets/bombaB.pdf', '_blank');
+        }
+
+        function abrirbombaF() {
+            window.open('./attached_assets/bombaF.pdf', '_blank');
+        }
+
+        // Wait for DOM to be fully loaded before adding event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar eventos para a tecla Enter
+            const profundidadeForm = document.getElementById('profundidadeForm');
+            if (profundidadeForm) {
+                profundidadeForm.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const proximoBtn = document.getElementById('proximo-btn');
+                        if (proximoBtn) {
+                            proximoBtn.click();
+                        }
+                    }
+                });
+            }
+
+            // Adicionar evento para tecla Enter no passo 2
+            document.addEventListener('keypress', function(e) {
+                const step2 = document.getElementById('step-2');
+                const comprimentoFinal = document.getElementById('comprimento-final');
+                const larguraFinal = document.getElementById('largura-final');
+
+                if (e.key === 'Enter' && step2 && step2.classList.contains('active')) {
+                    if (comprimentoFinal && larguraFinal && comprimentoFinal.value && larguraFinal.value) {
+                        e.preventDefault();
+                        calcularVolume();
+                    }
+                }
+            });
+
+            const proximoBtn = document.getElementById('proximo-btn');
+            if (proximoBtn) {
+                proximoBtn.addEventListener('click', function() {
+                    calcularTempo();
+                });
+            }
+
+            // Event listener para seleção de material relacionados - Opção 1
+            const materialRelacionados1 = document.getElementById('material-relacionados-1');
+            if (materialRelacionados1) {
+                materialRelacionados1.addEventListener('change', function() {
+                    const material = this.value;
+                    if (material) {
+                        document.getElementById('dispositivos-1').style.display = 'flex';
+                        updateDevicesByMaterial(material, 1);
+                        const currentVolume = parseFloat(document.getElementById('volume').textContent) || 0;
+                        exibirTrocadorDeCalor(currentVolume, material, 1);
+                    }
+                });
+            }
+
+            // Event listener para seleção de material relacionados - Opção 2
+            const materialRelacionados2 = document.getElementById('material-relacionados-2');
+            if (materialRelacionados2) {
+                materialRelacionados2.addEventListener('change', function() {
+                    const material = this.value;
+                    if (material) {
+                        document.getElementById('dispositivos-2').style.display = 'flex';
+                        updateDevicesByMaterial(material, 2);
+                        const currentVolume = parseFloat(document.getElementById('volume-2').textContent) || 0;
+                        exibirTrocadorDeCalor(currentVolume, material, 2);
+                    }
+                });
+            }
+
+            // Adicionar evento para atualizar tempo de recirculação
+            const tempoRecirculacaoSelect = document.getElementById('tempo-recirculacao');
+            if (tempoRecirculacaoSelect) {
+                tempoRecirculacaoSelect.addEventListener('change', function() {
+                    atualizarTempoRecirculacao();
+                    const resultadoProdutos = document.getElementById('resultado-produtos');
+                    if (resultadoProdutos && resultadoProdutos.style.display === 'block') {
+                        const volumeElement = document.getElementById('volume');
+                        if (volumeElement) {
+                            const currentVolume = parseFloat(volumeElement.textContent);
+                            const newVazao = currentVolume / tempoRecirculacao;
+                            mostrarProdutosPorVazao(newVazao, currentVolume);
+                        }
+                    }
+                });
+            }
+
+            const calcularVolumeBtn = document.getElementById('calcular-volume-btn');
+            if (calcularVolumeBtn) {
+                calcularVolumeBtn.addEventListener('click', function () {
+                    const volumeInput = document.getElementById('volume_direto');
+
+                    if (!volumeInput) {
+                        alert('Erro: Elemento do formulário não encontrado.');
+                        return;
+                    }
+
+                    const volume = parseFloat(volumeInput.value);
+
+                    if (!isNaN(volume) && volume > 0) {
+                        calcularPorVolume();
+                    } else {
+                        calcularVolume();
+                    }
+                });
+            }
+        });
+
+        function updateDevicesByMaterial(material, option) {
+            const retorno = document.getElementById(`dispositivo-retorno-${option}`);
+            const aspiracao = document.getElementById(`dispositivo-aspiracao-${option}`);
+            const ralo = document.getElementById(`ralo-fundo-${option}`);
+            const refletorJway = document.getElementById(`refletor-jway-${option}`);
+            const moduloControlador = document.getElementById(`modulo-controlador-${option}`);
+
+            const coadeiraWc = document.getElementById(`coadeira-wc-${option}`);
+            const coadeiraWf = document.getElementById(`coadeira-wf-${option}`);
+            const coadeiraWl = document.getElementById(`coadeira-wl-${option}`);
+            const coadeiraSv = document.getElementById(`coadeira-sv-${option}`);
+            const de5018 = document.getElementById(`de50-18-${option}`);
+            const trocador1 = document.getElementById(`trocador-calor-jtc35fiw-m2-${option}`);
+            const trocador2 = document.getElementById(`trocador-calor-jtc50fiw-m2-${option}`);
+            const trocador3 = document.getElementById(`trocador-calor-jtc81fiw-m2-${option}`);
+            const jgf280 = document.getElementById(`jgf280-item-${option}`);
+            const jgf195 = document.getElementById(`jgf195-item-${option}`);
+            const escada = document.getElementById(`escada-item-${option}`);
+            const botaoEmergencia = document.getElementById(`botao-emergencia-item-${option}`);
+            const hidroterapia = document.getElementById(`hidroterapia-item-${option}`);
+
+            // Hide all material-specific items by default
+            coadeiraWc.style.display = 'none';
+            coadeiraWf.style.display = 'none';
+            coadeiraWl.style.display = 'none';
+            de5018.style.display = 'none';
+            jgf280.style.display = 'none';
+            jgf195.style.display = 'none';
+            hidroterapia.style.display = 'none';
+
+            // Hide/show the module controller based on material
+            if (material === 'vinil') {
+                moduloControlador.style.display = 'none'; 
+            } else {
+                moduloControlador.style.display = 'flex';
+            }
+
+            // Lógica de visibilidade do refletor
+            if (material === 'concreto') {
+                refletorJway.style.display = 'flex';
+            } else {
+                refletorJway.style.display = 'none';
+            }
+
+            if (material === 'fibra') {
+                retorno.querySelector('img').src = 'https://imgur.com/vktG7AK.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno IFF90 ABS BRANCO';
+                retorno.querySelector('p').innerHTML = 'Dispositivo de Retorno IFF90 ABS BRANCO cod: 99400772';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/nn5PE4C.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPF15 BRANCO';
+                aspiracao.querySelector('p').innerHTML = 'Dispositivo de Aspiração VPF15 BRANCO cod: 99400335';
+
+                ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
+                ralo.querySelector('p').innerHTML = 'Ralo de Fundo CRP180RFV cod: 99401929';
+                ralo.style.display = 'flex';
+
+                refletorJway.querySelector('img').src = 'https://imgur.com/o08AdqH.png';
+                refletorJway.querySelector('img').alt = 'Refletor PROLITE Fiber';
+                refletorJway.querySelector('p').innerHTML = 'Refletor PROLITE Fiber cod: 99500662';
+                refletorJway.style.display = 'flex';
+
+                coadeiraWf.style.display = 'flex';
+                hidroterapia.style.display = 'flex';
+
+            } else if (material === 'vinil') {
+                retorno.querySelector('img').src = 'https://imgur.com/vMnFut4.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno IFL90 ABS BRANCO';
+                retorno.querySelector('p').innerHTML = 'Dispositivo de Retorno IFL90 ABS BRANCO cod: 99400764';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/3p9q3fE.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração VPL15 BRANCO';
+                aspiracao.querySelector('p').innerHTML = 'Dispositivo de Aspiração VPL15 BRANCO cod: 99400715';
+
+                ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
+                ralo.querySelector('p').innerHTML = 'Ralo de Fundo CRP180RFV cod: 99401929';
+                ralo.style.display = 'flex';
+
+                coadeiraWl.style.display = 'flex';
+
+            } else { // concreto
+                retorno.querySelector('img').src = 'https://imgur.com/Rl11bdX.png';
+                retorno.querySelector('img').alt = 'Dispositivo de Retorno DR50-INOX';
+                retorno.querySelector('p').innerHTML = 'Dispositivo de Retorno DR50-INOX cod: 99401820';
+
+                aspiracao.querySelector('img').src = 'https://imgur.com/Gs3z0VC.png';
+                aspiracao.querySelector('img').alt = 'Dispositivo de Aspiração DA50-INOX';
+                aspiracao.querySelector('p').innerHTML = 'Dispositivo de Aspiração DA50-INOX cod: 99401838';
+
+                ralo.querySelector('img').src = 'https://imgur.com/k5VSLIM.png';
+                ralo.querySelector('img').alt = 'Ralo de Fundo CRP180RFV';
+                ralo.querySelector('p').innerHTML = '2X Ralo de Fundo CRP180RFV cod: 99401929';
+                ralo.style.display = 'flex';
+
+                coadeiraWc.style.display = 'flex';
+                de5018.style.display = 'flex';
+                jgf280.style.display = 'flex';
+                jgf195.style.display = 'flex';
+                hidroterapia.style.display = 'flex';
+            }
+
+            // Show universal items
+            coadeiraSv.style.display = 'flex';
+            trocador1.style.display = 'flex';
+            trocador2.style.display = 'flex';
+            trocador3.style.display = 'flex';
+            escada.style.display = 'flex';
+            botaoEmergencia.style.display = 'flex';
+        }
+
+        // Função para trocar entre passos do formulário
+        function mostrarPasso(passo) {
+            document.querySelectorAll('.step-container').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step-' + passo).classList.add('active');
+        }
+
+        function voltarPasso(passo) {
+            mostrarPasso(passo);
+        }
+
+        let tempoRecirculacaoInicial; // Variável para armazenar o tempo inicial
+
+        function calcularTempo() {
+            profundidade = parseFloat(document.getElementById('profundidade').value);
+            tipoPiscina = document.getElementById('tipo').value;
+
+            if (isNaN(profundidade) || profundidade <= 0) {
+                alert('Por favor, insira uma profundidade válida.');
                 return;
             }
-            
-            grid.style.display = 'grid';
-            noResults.style.display = 'none';
-            
-            grid.innerHTML = productsToRender.map(product => `
-                <div class="product-card">
-                    <div class="product-image">
-                        ${product.type === 'filtro' ? '🔧' : '⚙️'}
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-specs">${product.specs}</div>
-                        <button class="download-btn" onclick="downloadFile('${product.file}')">
-                            📥 Download PDF
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+
+            // Lógica para calcular o tempo de recirculação
+            if (tipoPiscina === 'residencial_privativa') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 4;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 8;
+                } else {
+                    tempoRecirculacao = 8;
+                }
+            } else if (tipoPiscina === 'residencial_coletiva') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 2;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 6;
+                } else {
+                    tempoRecirculacao = 8;
+                }
+            } else if (tipoPiscina === 'alta_taxa_ocupacao') {
+                if (profundidade <= 0.6) {
+                    tempoRecirculacao = 2;
+                } else if (profundidade <= 1.5) {
+                    tempoRecirculacao = 4;
+                } else {
+                    tempoRecirculacao = 6;
+                }
+            }
+
+            // Armazenar o tempo inicial calculado
+            tempoRecirculacaoInicial = tempoRecirculacao;
+
+            // Atualizar as opções do select baseado no tempo inicial
+            atualizarOpcoesTempoRecirculacao();
+
+            // Habilitar o select
+            document.getElementById('tempo-recirculacao').disabled = false;
+
+            document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
+            mostrarPasso(2);
         }
 
-        function filterProducts() {
-            const tipo = document.getElementById('tipo').value;
-            const modelo = document.getElementById('modelo').value;
-            const aplicacao = document.getElementById('aplicacao').value;
-            
-            const filtered = products.filter(product => {
-                return (!tipo || product.type === tipo) &&
-                       (!modelo || product.model === modelo) &&
-                       (!aplicacao || product.application === aplicacao);
+        function exibirTrocadorDeCalor(volume, material, option) {
+            const jtc35 = document.getElementById(`jtc35-m2-item-${option}`);
+            const jtc50 = document.getElementById(`jtc50-m2-item-${option}`);
+            const jtc81 = document.getElementById(`jtc81-m2-item-${option}`);
+            const originalTrocador = document.getElementById(`trocador-calor-item-${option}`);
+
+            jtc35.style.display = 'flex';
+            jtc50.style.display = 'flex';
+            jtc81.style.display = 'flex';
+            originalTrocador.style.display = 'none';
+        }
+
+        function mostrarProdutosPorVazao(vazao, volume) {
+            document.getElementById('volume').textContent = volume.toFixed(2);
+            document.getElementById('resultado-divisao').textContent = vazao.toFixed(2);
+
+            const volume2Element = document.getElementById('volume-2');
+            const resultadoDivisao2Element = document.getElementById('resultado-divisao-2');
+            if (volume2Element) volume2Element.textContent = volume.toFixed(2);
+            if (resultadoDivisao2Element) resultadoDivisao2Element.textContent = vazao.toFixed(2);
+
+            document.getElementById('instrucoes-iniciais').style.display = 'none';
+            document.getElementById('instrucoes-iniciais-2').style.display = 'none';
+            document.getElementById('resultado-produtos').style.display = 'block';
+            document.getElementById('resultado-produtos-2').style.display = 'block';
+            document.getElementById('recalcular-btn').style.display = 'none';
+            document.getElementById('recalcular-btn-inicial').style.display = 'inline-block';
+
+            document.querySelectorAll('.intervalo-container').forEach(div => {
+                div.style.display = 'none';
             });
-            
-            renderProducts(filtered);
+            document.getElementById('dispositivos-1').style.display = 'none';
+            document.getElementById('dispositivos-2').style.display = 'none';
+
+            let selectedRange = productRanges.find(range => vazao >= range.range[0] && vazao <= range.range[1]);
+
+            if (selectedRange) {
+                document.getElementById(selectedRange.id).style.display = 'flex';
+
+                if (selectedRange.id === 'intervalo-ate-2-5') {
+                    document.getElementById('intervalo-ate-2-5-opcao-2').style.display = 'flex';
+                }
+                if (selectedRange.id === 'intervalo-2-6-5-5') {
+                    document.getElementById('intervalo-2-6-5-5-opcao-2').style.display = 'flex';
+                }
+            }
         }
 
-        function clearFilters() {
-            document.getElementById('tipo').value = '';
-            document.getElementById('modelo').value = '';
-            document.getElementById('aplicacao').value = '';
-            renderProducts();
+        function atualizarOpcoesTempoRecirculacao() {
+            const select = document.getElementById('tempo-recirculacao');
+
+            // Limpar todas as opções
+            select.innerHTML = '';
+
+            // Adicionar apenas as opções menores ou iguais ao tempo inicial
+            const opcoes = [8, 6, 4, 2];
+
+            opcoes.forEach(tempo => {
+                if (tempo <= tempoRecirculacaoInicial) {
+                    const option = document.createElement('option');
+                    option.value = tempo;
+                    option.textContent = `${tempo} horas`;
+                    select.appendChild(option);
+                }
+            });
+
+            // Definir o valor selecionado como o tempo inicial calculado
+            select.value = tempoRecirculacaoInicial;
         }
 
-        function downloadFile(filename) {
-            const link = document.createElement('a');
-            link.href = `attached_assets/${filename}`;
-            link.download = filename;
-            link.click();
+        function calcularPorVolume() {
+            const volume = parseFloat(document.getElementById('volume_direto').value);
+            const tipoPiscina = document.getElementById('tipo').value;
+
+            if (isNaN(volume) || volume <= 0) {
+                alert('Por favor, insira um volume válido.');
+                return;
+            }
+
+            let tempoRecirculacao;
+            if (tipoPiscina === 'residencial_privativa') {
+                tempoRecirculacao = 8;
+            } else if (tipoPiscina === 'residencial_coletiva') {
+                tempoRecirculacao = 6;
+            } else if (tipoPiscina === 'alta_taxa_ocupacao') {
+                tempoRecirculacao = 4;
+            }
+
+            // Armazenar o tempo inicial calculado
+            tempoRecirculacaoInicial = tempoRecirculacao;
+
+            // Atualizar as opções do select baseado no tempo inicial
+            atualizarOpcoesTempoRecirculacao();
+
+            // Habilitar o select
+            document.getElementById('tempo-recirculacao').disabled = false;
+
+            const resultadoDivisao = volume / tempoRecirculacao;
+            mostrarProdutosPorVazao(resultadoDivisao, volume);
         }
 
-        // Event listeners
-        document.getElementById('tipo').addEventListener('change', filterProducts);
-        document.getElementById('modelo').addEventListener('change', filterProducts);
-        document.getElementById('aplicacao').addEventListener('change', filterProducts);
+        function atualizarTempoRecirculacao() {
+            tempoRecirculacao = parseInt(document.getElementById('tempo-recirculacao').value);
+            document.getElementById('tempo').textContent = `Tempo de Recirculação: ${tempoRecirculacao} horas`;
+        }
 
-        // Render inicial
-        renderProducts();
+        function calcularVolume() {
+            const comprimentoInput = document.getElementById('comprimento-final');
+            const larguraInput = document.getElementById('largura-final');
+            const tempoInput = document.getElementById('tempo-recirculacao');
 
-        // Melhorar experiência touch em mobile
-        if ('ontouchstart' in window) {
-            document.body.classList.add('touch-device');
+            if (!comprimentoInput || !larguraInput || !tempoInput) {
+                alert('Erro: Elementos do formulário não encontrados.');
+                return;
+            }
+
+            const comprimento = parseFloat(comprimentoInput.value);
+            const largura = parseFloat(larguraInput.value);
+            tempoRecirculacao = parseInt(tempoInput.value);
+
+            document.getElementById('tempo-recirculacao').disabled = false;
+
+            if (isNaN(comprimento) || comprimento <= 0 || isNaN(largura) || largura <= 0) {
+                alert('Por favor, insira comprimento e largura válidos.');
+                return;
+            }
+
+            const volume = comprimento * largura * profundidade;
+            const resultadoDivisao = volume / tempoRecirculacao;
+
+            mostrarProdutosPorVazao(resultadoDivisao, volume);
+        }
+
+        function reiniciarCalculos() {
+            document.getElementById('profundidade').value = '';
+            document.getElementById('tipo').value = 'residencial_privativa';
+            document.getElementById('comprimento-final').value = '';
+            document.getElementById('largura-final').value = '';
+            document.getElementById('volume_direto').value = '';
+            document.getElementById('material-relacionados-1').value = '';
+            document.getElementById('material-relacionados-2').value = '';
+
+            // Resetar as opções do tempo de recirculação para todas as opções
+            const select = document.getElementById('tempo-recirculacao');
+            select.innerHTML = `
+                <option value="8">8 horas</option>
+                <option value="6">6 horas</option>
+                <option value="4">4 horas</option>
+                <option value="2">2 horas</option>
+            `;
+
+            // Resetar variável do tempo inicial
+            tempoRecirculacaoInicial = null;
+
+            document.getElementById('instrucoes-iniciais').style.display = 'block';
+            document.getElementById('instrucoes-iniciais-2').style.display = 'block';
+            document.getElementById('resultado-produtos').style.display = 'none';
+            document.getElementById('resultado-produtos-2').style.display = 'none';
+            document.getElementById('recalcular-btn').style.display = 'none';
+            document.getElementById('recalcular-btn-inicial').style.display = 'none';
+
+            document.getElementById('trocador-calor-item-1').style.display = 'none';
+            document.getElementById('bomba-trocador-item-1').style.display = 'none';
+            document.getElementById('trocador-calor-item-2').style.display = 'none';
+            document.getElementById('bomba-trocador-item-2').style.display = 'none';
+            document.getElementById('modulo-controlador-1').style.display = 'flex';
+            document.getElementById('modulo-controlador-2').style.display = 'flex';
+
+            document.getElementById('material-selection-1').style.display = 'none';
+            document.getElementById('material-selection-2').style.display = 'none';
+
+            // Show "Ver Itens Relacionados" buttons for both panels
+            const panel1Button = document.getElementById('imagens-exibidas').querySelector('.form-group button');
+            const panel2Button = document.getElementById('imagens-exibidas-2').querySelector('.form-group button');
+
+            if (panel1Button && panel1Button.textContent.includes('Ver Itens Relacionados')) {
+                panel1Button.style.display = 'block';
+            }
+            if (panel2Button && panel2Button.textContent.includes('Ver Itens Relacionados')) {
+                panel2Button.style.display = 'block';
+            }
+
+            document.getElementById('tempo-recirculacao').disabled = true;
+
+            document.querySelectorAll('.intervalo-container').forEach(div => {
+                div.style.display = 'none';
+            });
+            mostrarPasso(1);
+        }
+
+        function mostrarItensRelacionados(option) {
+            document.getElementById(`material-selection-${option}`).style.display = 'block';
+
+            // Hide only the button for the specific option/panel
+            const panelContainer = option === 1 ? 
+                document.getElementById('imagens-exibidas') : 
+                document.getElementById('imagens-exibidas-2');
+
+            const button = panelContainer.querySelector('.form-group button');
+            if (button && button.textContent.includes('Ver Itens Relacionados')) {
+                button.style.display = 'none';
+            }
         }
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-links">
+                    <h3>Links Úteis</h3>
+                    <a href="https://www.jacuzzi.com.br/contato-2/" target="_blank">
+                        <i class="fas fa-envelope"></i> CONTATO
+                    </a>
+                    <a href="https://www.jacuzzi.com.br/assistencia-tecnica/" target="_blank">
+                        <i class="fas fa-tools"></i> ASSISTÊNCIA TÉCNICA
+                    </a>
+                    <a href="https://www.jacuzzi.com.br/privacidade/" target="_blank">
+                        <i class="fas fa-shield-alt"></i> POLÍTICA DE PRIVACIDADE
+                    </a>
+                </div>
+
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://api.whatsapp.com/send/?phone=5511993769644&text&type=phone_number&app_absent=0" target="_blank" class="social-icon" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com/jacuzzibrasil" target="_blank" class="social-icon" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/jacuzzibrasiloficial/" target="_blank" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCkk0U82tcl4hQ0DtVjy0dNw" target="_blank" class="social-icon" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-company-info">
+                <p><strong>JACUZZI DO BRASIL IND E COM LTDA</strong> - CNPJ 59.105.007/0001-10</p>
+                <p>Rod. Waldomiro C. Camargo, km 53,5 - SP-79. CEP 13308-900 - Itu - SP</p>
+                <p>Tel.: (11) 2118-7500 | Suporte técnico: Grande São Paulo (11) 2118-7500</p>
+                <p>Demais localidades - DDG 0800-702-1432 | E-mail: faleconosco@jacuzzi.com.br</p>
+                <p style="margin-top: 15px; font-size: 0.8rem;">© 2025 Jacuzzi do Brasil. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
