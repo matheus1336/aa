@@ -3,8 +3,13 @@
   command = "echo 'Static site - no build required'"
 
 [[redirects]]
+  from = "/"
+  to = "/Sistema de filtros.html"
+  status = 302
+
+[[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/Sistema de filtros.html"
   status = 404
 
 [build.environment]
