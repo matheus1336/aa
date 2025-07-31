@@ -4,12 +4,12 @@
 
 [[redirects]]
   from = "/"
-  to = "/Sistema de filtros.html"
+  to = "/sistema-de-filtros.html"
   status = 302
 
 [[redirects]]
   from = "/*"
-  to = "/Sistema de filtros.html"
+  to = "/sistema-de-filtros.html"
   status = 404
 
 [build.environment]
